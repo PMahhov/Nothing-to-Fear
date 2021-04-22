@@ -51,6 +51,18 @@ Instead of taking inventory:
 	say "[if the player wears something]. [We]['re] wearing [a list of things worn by the player][end if]." 
 
 
+Understand "find [any thing]" as finding. 
+
+Finding is an action applying to one visible thing. 
+
+Carry out finding: 
+	if the player is carrying the noun: 
+		say "You're holding [the noun]!"; 
+	otherwise: 
+		say "You left [the noun] [if the noun is on a supporter]on[otherwise]in[end if] [the holder of the noun]." 
+
+Understand the commands "access" as "open". 
+
 Chapter 1 - player's clothes
 
 Equipment is a kind of wearable thing.
@@ -319,7 +331,7 @@ Instead of answering:
 
 Instead of answering the phone:
 	if the phone is not carried:
-		say "Your phone is not voice-activated, you'll have to pick it up first.";
+		say "Your phone is not voice-activated, you'll have to pick it up before answering it.";
 	otherwise if the phone is ringing:
 		now the phone is speaking;
 	otherwise:
@@ -415,9 +427,9 @@ Instead of sleeping:
 		award the "FTS I'm out" achievement;
 		end the story.
 
-Calling is an action applying to one thing. Understand "call [something]" as calling.
+Calling is an action applying to one thing. Understand "call [something]" as calling. [Understand "call [anything]" as calling.]
 
-Calling back is an action applying to nothing. Understand "call back" and "call friend" and "call my friend" as calling back.
+Calling back is an action applying to nothing. Understand "call back" and "call friend" and "call my friend" and "call friend back" and "call them back" and "call them" as calling back.
 
 Understand "use phone" as calling back;
 
