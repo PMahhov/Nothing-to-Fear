@@ -624,6 +624,7 @@ protest_run_success is a page. "You lunge into a close-together group of loud pr
 
 protest_run_success2 is a page.
 A page-toggle rule for protest_run_success2:
+	award the "Urban Evasion" achievement;
 	now Left to Home is true;
 
 
@@ -839,12 +840,13 @@ achievement	description	validation	awarded
 "Center of Attention"	"Present yourself as Conspicuously as possible"	--	false
 "They're not gonna stop calling, you know"	"Let the phone ring for a while"	phone achievement rule	false
 "Squeaky Clean"	"Get wrongfully arrested"	--	false
-"Wretched Recidivist"	"Wow you really went all out, didn't you"	--	false
+"Wretched Recidivist"	"Wow, you really went all out to trigger them, didn't you"	--	false
 "Non-Person"	"You basically don't exist as far as the State is concerned"	--	false
-"Human Show"	"Literally 'Reality TV'"	--	false
+"Human Show"	"Your life is now literally 'Reality TV'"	--	false
 "FTS I'm out"	"NO thank you"	--	false
 "Vent your frustrations"	"I suspect you looked at the code to get this one"	--	false
 "Man's Not Hot"	"One plus one plus one is three"	three jackets achievement rule	false
+"Urban Evasion"	"Your decisive strike and immersive blending got you off the hook"	--	false
 
 This is the phone achievement rule:
 	if Phone Conversation has not happened:
