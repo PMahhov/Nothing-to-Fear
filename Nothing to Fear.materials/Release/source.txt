@@ -425,6 +425,7 @@ Instead of sleeping:
 		say "You drop down onto your mattress and once again succumb to the temptation of a midday nap. You contemplate the sleepless night that will undoubtedly lay ahead. 'Not going to feel any better in a prison cell', you say to yourself. The thought is of little comfort, though.";
 		say "[paragraph break]";
 		award the "FTS I'm out" achievement;
+		wait for any key;
 		end the story.
 
 Calling is an action applying to one thing. Understand "call [something]" as calling. [Understand "call [anything]" as calling.]
@@ -564,14 +565,14 @@ When Leaving the Apartment begins:
 		award the "Center of Attention" achievement;
 	otherwise:
 		say “More than a few heads turn your way as you make your way through the gathered crowd. ";
-	if the player is wearing the ski mask:
-		say "You pass dangerously close to a pair of police officers patrolling the perimeter of the crowd. One takes a look at your balaclava-covered face, nudges his partner, and calls something in on his radio. ";
 	if the player is wearing the trenchcoat:
 		say "You’re not quite sure what you were thinking, putting on a trenchcoat like that. Perhaps you might have blended in during Cold War era Berlin, but this is a late 21st century protest. ";
 	otherwise if the player is wearing the rainjacket:
-		say "There is no stormcloud in sight today, so you receive more than a few odd looks, dressed as you are in a yellow rainjacket. You’re glad you haven’t washed it in a while, or it would have been almost as bright as the sun itself, you feel. ";
+		say "There is no stormcloud in sight today, so you look quite out of place, dressed as you are in a yellow rainjacket. You’re glad you haven’t washed it in a while, or it would have been almost as bright as the sun itself, you feel. ";
 	otherwise if the player is wearing the hoodie:
-		say "The dull grey hoodie you’ve kept since your teenage years and not grown out of allows you to blend in with most of the people. ";
+		say "The dull grey hoodie you’ve kept since your teenage years and not ever grown out of allows you to blend in with most of the people. ";
+	if the player is wearing the ski mask:
+		say "You pass dangerously close to a pair of police officers patrolling the perimeter of the crowd. One takes a look at your balaclava-covered face, nudges his partner, and calls something in on his radio. ";
 	if the player is wearing the surgical mask:
 		say "There are many people around with surgical masks on; it's one of the last unbanned ways to cover your face, probably due to the obvious excuse. ";
 	if the player is wearing the baseball cap:
@@ -738,20 +739,22 @@ When No Search begins:
 	say "It’s your friend calling. ‘All good?’ [line break]You manage to mumble an affirmative reply. [paragraph break]";
 	wait for any key;
 	say "‘So… same time, new place next week?'";
+	wait for any key;
 	if Surveillance is 0:
 		award the "Non-Person" achievement;
 	if Arrested is true:
-		wait for any key;
 		say "[paragraph break]Somewhere, someplace far away, an algorithm refers the tracking of your call to a live agent. You are now a person of interest, after all. ";
+		wait for any key;
 		if Surveillance is 10:
 			say "[line break]The alert, however, was not actually necessary, as you are already under watch by a rotating team. It's fortunate that your life is not excessively entertaining.";
 			award the "Human Show" achievement;		
+			wait for any key;
 		end the story;
 	otherwise if Surveillance < 2: 
 		end the story;
 	otherwise:
-		wait for any key;
 		say "[paragraph break]Somewhere, someplace far away, an algorithm referred the tracking of your call to a live agent. You are now a person of interest, after all. ";
+		wait for any key;
 		end the story.
 	
 		
@@ -792,7 +795,7 @@ When At Police Station begins:
 		if Other Crimes is true:
 			say "'[paragraph break]";
 			wait for any key;
-		say "'You do not currently have any lawful identification with you. Unlucky for you, your parents were law-abiding citizens, so we have your DNA and fingerprints on file. You don’t get to be a John Doe these days. We know exactly who you are. ";
+		say "'You do not currently have any lawful identification with you. Unlucky for you, your parents were law-abiding citizens, so we have your DNA and fingerprints on file. You don’t get to be a J. Doe these days. We know exactly who you are. ";
 		now Other Crimes is true;
 	if the player is carrying the medium rock:
 		if Other Crimes is true:
@@ -812,11 +815,13 @@ When At Police Station begins:
 		say "[paragraph break]";
 		wait for any key;
 		say "You don't get a free phone call from your prison cell.";
+		wait for any key;
 		end the story;
 	otherwise if Suspicion  > 3:
 		say "‘I’ll be frank, individually, none of these would warrant any charges in and of itself. But combined together, these paint a picture that does not look very good on you. Better hope the judge is feeling lenient.’[paragraph break]";
 		wait for any key;
 		say "You spend your one free phone call attempting to call your friend. They never answer the phone. ";
+		wait for any key;
 		end the story;
 	otherwise if Suspicion is 0:
 		say "He smiles at you apologetically, 'Such things happen, citizen. I'm sure you understand. Try to be more careful from now on.'[paragraph break]";
