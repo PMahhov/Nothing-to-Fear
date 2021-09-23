@@ -1,5 +1,7 @@
 "Nothing to Fear" by Peter Mahhov
 
+[this is version 1.2 of the game]
+
 include Basic Screen Effects by Emily Short.
 
 include Basic Help Menu by Emily Short	[adds general help menu]
@@ -28,11 +30,15 @@ The story description is "You are invited to a protest. Don't get caught by the 
 
 Release along with cover art ("A slightly open door through which a sliver of light comes into a darkened room. A smartphone with a cracked screen. Its camera is recording.").
 
+Commenting is an action out of world applying to one topic. Understand "* [text]" as commenting.
+Carry out commenting:
+say "Comment noted."
+
 Part 1 - Main gameplay area
 
 When play begins:
 	choose row 1 in Table of Basic Help Options;
-	now description entry is "Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and Beta testing by Oscar Bray.[paragraph break] Further beta testing by Vandan Pokal, Tengiz Ibrayev. [paragraph break] Known bug and tentative fix: If the game freezes at any point, try changing the size of the page." 
+	now description entry is "Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and beta testing by Oscar Bray.[paragraph break] Further beta testing by Vandan Pokal and Tengiz Ibrayev. [paragraph break]" 
 
 The Apartment is a room.  "[if unvisited]You are coming out of the bathroom, having just taken a shower and moderately dressed yourself. You just about manage to avoid looking at the stack of uncleaned plates in the kitchen on the other side of the room. [end if]This is the small studio apartment you live in. It would be messier if you had more stuff. "
 
@@ -62,6 +68,12 @@ Carry out finding:
 		say "You left [the noun] [if the noun is on a supporter]on[otherwise]in[end if] [the holder of the noun]." 
 
 Understand the commands "access" as "open". 
+
+Understand "deposit [something] in [an open container]" as inserting it into. 
+
+A thing can be imaginary or real. A thing is usually real.
+Instead of doing anything other than examining to an imaginary thing:
+	say "[The noun] [if the noun is plural-named]are[otherwise]is[end if] not actually there."
 
 Chapter 1 - player's clothes
 
@@ -122,6 +134,7 @@ Instead of throwing something at a closed openable door, say "Or you could just 
 
 [other furniture in the apartment]
 
+The wall is scenery in the Apartment. The description is "The walls are thin; don't make too much noise.". Understand "walls" as wall. 
 
 The trash bin is a closed openable container in the Apartment.  The description is "A thin veneer between you and the rest of the world's garbage. It kind of looks like a tiny astronaut suit, if you squint. [line break]It is currently[if the trash bin is open] open.[otherwise] closed.". Rule for printing the name of the bin: say "trash bin in the corner of the room". 
 
@@ -146,6 +159,21 @@ A closed openable container called the bottom drawer is part of the desk. The de
 Understand "second drawer" or "lower drawer" as the bottom drawer.
 
 A drawers is a scenery in the apartment. The description is "There are two drawers part of your desk, a top one and a bottom one.". Instead of opening drawers, say "You'll have to specify which one.". Instead of taking the drawers, say "They seem to be a part of the desk."
+Understand "desk drawer" as drawers.
+
+
+The bathroom is scenery in the apartment. The description is "It has a bead curtain for privacy. Still damp from the shower you just took."
+
+The bead curtain is scenery in the apartment. The description is "It would probably have made things awkward if you didn't live alone.". Instead of taking the bead curtain, say "You're leaving it in place in honour of the last person to live here. Also if you ever get a TV you could watch it from the bathroom!"
+
+Understand "take shower" or "take a shower" or "take bath" or "take a bath" or "bathe" as bathing. Bathing is an action applying to nothing.
+Instead of bathing, say "Luckily you've just taken a shower a little while ago."
+Understand "shower" as bathroom.
+
+Biologizing is an action applying to nothing.
+Understand "go to bathroom" and "go to the bathroom" and "use toilet" as biologizing.
+Instead of biologizing, say "Luckily you've just went a little while ago.";
+
 
 The fridge is scenery in the apartment. The description is "Tempting as it is, you've already eaten breakfast twice today."
 Instead of opening fridge, say "Tempting as it is, you've already eaten breakfast twice today."
@@ -156,29 +184,28 @@ The kitchen area is scenery in the apartment. The description is "Tempting as it
 Things can be dirty or clean.
 
 The plates are scenery in the apartment.  The plates is dirty. The description is "[if plates is dirty]A messy pile of dirty plates in the sink. [otherwise]A messy pile of clean plates besides the sink.".
-Understand "dishes" as plates.
+Understand "dishes" or "plate" as plates.
 
 Instead of taking plates, say "Tempting as it is, you've already eaten breakfast twice today.".
 Breakfasting is an action applying to nothing. Understand "go to the kitchen" and "go to kitchen" as breakfasting.
 Instead of breakfasting, say "Tempting as it is, you've already eaten breakfast twice today.".
-		
+	
+Understand "wash [something]" as rubbing.
 Before rubbing:
-	if the noun is plates and the plates is dirty:
-		now the plates is clean;
-		say "You grudgingly go and clean the plates. You could eat off of these things!" instead;
+	if the noun is plates:
+		if the plates is dirty:
+			now the plates is clean;
+			say "You grudgingly go and clean the plates. You could eat off of these things!";
+			award the "Productive member of society" achievement;
+			rule fails;
+		otherwise:
+			say "You briefly stare at the washed dishes, carefully avoiding the reflection of yourself.";
+			say "They're clean enough for now.";
+			rule fails;
+	if the noun is the player:
+		try bathing instead;
 	otherwise:
 		say "Ehh, it's clean enough." instead;
-
-The bathroom is scenery in the apartment. The description is "It has a bead curtain for privacy. Still damp from the shower you just took."
-
-Understand "take shower" or "take a shower" or "take bath" or "take a bath" or "bathe" or "wash" as bathing. Bathing is an action applying to nothing.
-Instead of bathing, say "Luckily you've just taken a shower a little while ago."
-Instead of rubbing the player, try bathing.
-Understand "shower" as bathroom.
-
-Biologizing is an action applying to nothing.
-Understand "go to bathroom" and "go to the bathroom" and "use toilet" as biologizing.
-Instead of biologizing, say "Luckily you've just went a little while ago.";
 
 
 The bed is a supporter in the apartment. The description is "A vaguely bed-shaped tangle of mattress, pillow, and sheets. You wisely delegate the solving of this knot to future you."
@@ -198,6 +225,8 @@ The pillow is scenery in the apartment. The description is "You can barely tell 
 Instead of taking the pillow, say "If you try to disentangle the sheets to get at the pillow, you're going to feel guilty for not making your bed. You know how this goes."
 
 The wardrobe is in the apartment.  The wardrobe is a closed openable container. The description is "A large container that wards your robes. It is currently[if the wardrobe is open] open.[otherwise] closed."
+
+The robes are part of the wardrobe. The description is "If only you could put on a robe and wizard hat!". Instead of taking the robes, say "Alas, they exist only online and in your imagination."
 
 The display shelf is a supporter in the apartment. The shelf is fixed in place.  The description is "The display shelf is nailed to the wall at about waist-height. Too low to comfortably reach while standing, too high for using as a table while sitting down on the floor. Half the reason you never used your 'Rock Stacking Kit™ for Meditation'. [paragraph break]On the display shelf there is a pet rock enclosure .".
 
@@ -228,7 +257,7 @@ The apartment key is in the pockets. Before taking the apartment key, say "[if t
 
 Understand "pocket" as pockets.
 
-Understand "coat" as trenchcoat.
+Understand "coat" or "trench coat" as trenchcoat.
 [The grey trenchcoat's pocket contains the apartment key.]
 
 The yellow rainjacket is a jacket. "Your yellow rainjacket is balled up in the corner."  
@@ -236,6 +265,8 @@ The yellow rainjacket is a jacket. "Your yellow rainjacket is balled up in the c
 Before dropping the yellow rainjacket, say "You squish the yellow rainjacket into a ball and throw it back in the corner where it belongs."
 
 The rainjacket is in the Apartment. The description of the rainjacket is "A crumpled bright yellow rainjacket. You don't like the attention you feel you get when wearing it. Lucky for you that it hasn't rained here in like forever.  You briefly feel glad that the local farmers are subsidized."
+
+The farmers are imaginary scenery in the Apartment. The description is "You don't know any actual, real-life farmers. You're just prone to odd bouts of empathy, is all.". 
 
 Understand "jacket" as rainjacket.
 
@@ -256,6 +287,8 @@ The pet rock enclosure contains a medium rock and some small rocks. [The pet roc
 The description of medium rock is "The largest rock in the family, slightly larger than your fist. It's still covered in sprinkles from the last time you decided to feed it." The description of small rocks is "All of the tiny round rocks you've ever bothered to pick up from the sidewalk and other miscellaneous places. They are there to keep the larger one company.".
 The small rocks are small.
 
+The sprinkles are part of the medium rock. The description is "The highest quality you could find by scavenging behind the pet store.". Instead of taking the sprinkles, say "They appear to be fused to the rock. Perhaps they haven't been fully digested yet."
+
 Before taking medium rock, say "Never know when you need to have a moderately heavy stone around to throw at someone. "
 
 The surgical mask is a wearable facemask. The surgical mask is in the top drawer. The description is "A relic of a bygone era. People now only wear them anymore because of the retro look. Still a pretty popular accessory.".
@@ -271,7 +304,13 @@ xyzzying is an action applying to nothing. Understand "xyzzy" as xyzzying. Inste
 
 greeding is an action applying to nothing. Understand "take all" and "take everything" and "pick up all" and "pick all up" and "pick up everything" and "pick everything up" and "take both"  and "pick up both" and "pick both up" as greeding. Instead of greeding, say "Self-examination shows that you have a very discrete and limited number of dextrous limbs. Better pick things up one by one."
 
+Understand "wear [something preferably held]" as wearing. 
 
+Understand "take [things]" as taking. 
+Understand "drop [things preferably held]" as dropping. 
+
+
+Understand "put [other things] in/inside/into [something]" as inserting it into
 
 Part 2 - Variable tracking
 
@@ -411,7 +450,7 @@ phone6f is a page. The cdesc is "No, never mind. I shouldn't have called back. I
 
 
 
-phonebed is a page. "With a heavy sigh you close the call before your friend gets another word in edgewise. Both of you would probably be better off without each other. Although it should still be fine to [bold type]call back[roman type] if end up reconsidering." It is an end-page. [ends the phone call, creates option to call back, opens go to bed ending]
+phonebed is a page. "With a heavy sigh you close the call before your friend gets another word in edgewise. Both of you would probably be better off without each other. Although it should still be fine to [bold type]call back[roman type] if you end up reconsidering." It is an end-page. [ends the phone call, creates option to call back, opens go to bed ending]
 
 A page-toggle rule for phonebed:
 	now Tired is true;
@@ -423,7 +462,7 @@ Instead of sleeping:
 		say "You're not feeling any more tired than the usual."	;
 	otherwise:
 		say "You drop down onto your mattress and once again succumb to the temptation of a midday nap. You contemplate the sleepless night that will undoubtedly lay ahead. 'Not going to feel any better in a prison cell', you say to yourself. The thought is of little comfort, though.";
-		say "[paragraph break]";
+[		say "[paragraph break]";]
 		award the "FTS I'm out" achievement;
 		wait for any key;
 		end the story.
@@ -459,7 +498,7 @@ A page-toggle rule for phone8a:
 	increase Surveillance by 1;
 	now Being Driven is true;
 
-phone9a is a page. "Alright, cool, see you in a little while." It flips to phoneEnd.
+phone9a is a page. "'Alright, cool, see you in a little while.'" It flips to phoneEnd.
 
 phone8b is a page. The cdesc is "No, don't worry, I think I can get there by myself." It is for phone8. It flips to phone9b.
 
@@ -483,12 +522,14 @@ Instead of examining outside:
 	otherwise:
 		say "You take a glance into the corridor outside the door. Good, there's nobody there at the moment.";
 
+Understand "leave [text]" as a mistake ("To try to leave the room, you can use the command [bold type]go outside[roman type]")
+
 Before going outside from the Apartment:
 	if the front door is locked:
 		say "You've got to unlock the door first. Although it would be pretty cool if you could just phase through.";
 		rule fails;
 	if Tired is true:
-		say "You're feeling pretty tired. Maybe you should take a nap instead? Although trying to [bold type]call back[roman type] might not be such a bad idea, if you're up to it.";
+		say "You're feeling pretty tired. Maybe you should [bold type]nap[roman type] instead? Although trying to [bold type]call back[roman type] might not be such a bad idea, if you're up to it.";
 		rule fails;
 	if Protest Knowledge is false:
 		say "You're not feeling particularly motivated to leave the house this month.";
@@ -771,7 +812,7 @@ Other Crimes is a truth state that varies. Other Crimes is initially false.
 When At Police Station begins:
 	cyoa teleport to Police Station;
 	switch from cyoa, without looking;
-	say "Upon arriving at the police station, you don’t have much time to gawk at the frenzy of activity. More and more people are brought by the minute. You see civilians being searched, and others sitting around, stuck in jail cells.[line break]";
+	say "Upon arriving at the police station, you don’t have much time to gawk at the frenzy of activity. More and more people are brought in by the minute. You see civilians being searched, and others sitting around, stuck in jail cells.[line break]";
 	wait for any key;
 	say "By some quirk of bureaucracy, you are instead taken straight to an interrogation room. You wonder whether that means that you look too dangerous, or not dangerous enough.[paragraph break]";
 	wait for any key;
@@ -789,7 +830,7 @@ When At Police Station begins:
 	if Badmouthed Government is true:
 		if Other Crimes is false:
 			say "'";
-		say "We’ve [if Being Driven is true]also [end if]got you on record with some pretty inflammatory speech against our government. That could be interpreted fomenting unrest, especially given what happened today. And my job is to secure law and order, no matter what. ";
+		say "We’ve [if Being Driven is true]also [end if]got you on record with some pretty inflammatory speech against our government. That could be interpreted as fomenting unrest, especially given what happened today. And my job is to secure law and order, no matter what. ";
 		now Other Crimes is true;
 	if the player is not carrying the ID card:
 		if Other Crimes is true:
@@ -852,6 +893,7 @@ achievement	description	validation	awarded
 "Vent your frustrations"	"I suspect you looked at the code to get this one"	--	false
 "Man's Not Hot"	"One plus one plus one is three"	three jackets achievement rule	false
 "Urban Evasion"	"Your decisive strike and immersive blending got you off the hook"	--	false
+"Productive member of society"	"You made life much easier for your imaginary roommate"	--	false
 
 This is the phone achievement rule:
 	if Phone Conversation has not happened:
