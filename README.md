@@ -8,3 +8,5 @@ Run the 'play.html' file.
 The game will open a web browser window and run offline.
 
 To see the source code, view the 'source.txt' file.
+
+For more detailed step-by-step installing instructions, click on the file called "How to install and play Nothing to Fear".
