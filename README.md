@@ -1,7 +1,13 @@
 # Nothing-to-Fear
 A piece of text-based interactive fiction written in the Inform7 language.
 
-Instructions for play:
+You are invited to a protest. Don't get caught by the State!
+A text adventure where playing dress-up makes Big Brother look the other way. Do you have what it takes to go out on a leisurely stroll and come back in one piece?
+
+Play online at: https://pmahhov.github.io/Nothing-to-Fear
+(desktop recommended, for mobile only works on iOS devices)
+
+Instructions for offline play:
 Download the whole repository as a .zip file.
 Extract the file into a local folder.
 Run the 'play.html' file.
