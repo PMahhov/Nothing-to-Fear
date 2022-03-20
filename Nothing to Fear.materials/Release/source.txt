@@ -1,10 +1,10 @@
 "Nothing to Fear" by Peter Mahhov
 
-[this is version 1.2 of the game]
+[this is version 1.3 of the game]
 
 include Basic Screen Effects by Emily Short.
 
-include Basic Help Menu by Emily Short	[adds general help menu]
+include Basic Help Menu by Emily Short	[adds general help/about menu]
 
 include Locksmith by Emily Short	[makes locking/unlocking/opening/closing doors much less frustrating]
 
@@ -18,7 +18,7 @@ include Poor Man's Mistype by Aaron Reed	[correction for common typos]
 
 Include Flexible Windows by Jon Ingold	[requirement for sidebar]
 
-Include Common Commands Sidebar by Alice Grove.	[adds sidebar]
+Include Common Commands Sidebar customized by Alice Grove.	[adds sidebar]
 
 Include Hybrid Choices by AW Freyr		[adds discrete choice options]
 
@@ -26,7 +26,7 @@ Release along with the source text.
 
 Release along with the "Quixe" interpreter. 
 
-The story description is "You are invited to a protest. Don't get caught by the State!"
+The story description is "You are invited to a protest. Don't get caught by the State! [paragraph break]A text adventure where playing dress-up makes Big Brother look the other way. Do you have what it takes to go out on a leisurely stroll and come back in one piece?"
 
 Release along with cover art ("A slightly open door through which a sliver of light comes into a darkened room. A smartphone with a cracked screen. Its camera is recording.").
 
@@ -38,7 +38,7 @@ Part 1 - Main gameplay area
 
 When play begins:
 	choose row 1 in Table of Basic Help Options;
-	now description entry is "Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and beta testing by Oscar Bray.[paragraph break] Further beta testing by Vandan Pokal and Tengiz Ibrayev. [paragraph break]" 
+	now description entry is "Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and beta testing by Oscar Bray.[paragraph break]Further beta testing by Vandan Pokal and Tengiz Ibrayev. [paragraph break]Github website created thanks to Ben Pang." 
 
 The Apartment is a room.  "[if unvisited]You are coming out of the bathroom, having just taken a shower and moderately dressed yourself. You just about manage to avoid looking at the stack of uncleaned plates in the kitchen on the other side of the room. [end if]This is the small studio apartment you live in. It would be messier if you had more stuff. "
 
@@ -88,13 +88,13 @@ The player wears a white T-shirt.  Understand "shirt" as T-shirt. The descriptio
 instead of taking off T-shirt, say "You don't particularly like taking off your shirt.".
 instead of dropping T-shirt, say "You don't particularly like taking off your shirt.".
 
-The player wears a pair of jeans. The description of the jeans is "The universal legwear. And a good thing, too, because it's the only pair you have." .
+The player wears a pair of jeans. The jeans are plural-named. The description of the jeans is "The universal legwear. And a good thing, too, because it's the only pair you have." The indefinite article of the pair of jeans is "a".
 Understand "pants" as jeans.
 
 instead of dropping jeans, say "These jeans are comfortable and you do not want to take them off.".
 instead of taking off jeans, say "These jeans are comfortable and you do not want to take them off."
 
-The tennis shoes are in the bottom drawer. The shoes are wearable. The description of the shoes is "Pristine good quality shoes that are both light and durable. Would be useful if you ever left the room.". Tennis shoes are an unopenable container. The indefinite article of the tennis shoes is "your".
+The tennis shoes are in the bottom drawer. The shoes are wearable and plural-named. The description of the shoes is "Pristine good quality shoes that are both light and durable. Would be useful if you ever left the room.". Tennis shoes are an unopenable container. The indefinite article of the tennis shoes is "your".
 Understand "shoe" as shoes.
 
 [allow only wearing one type of jacket/hat at once]
@@ -123,7 +123,8 @@ Understand "examine apartment" as looking.
 
 [the door]
 
-The front door is a locked door.  The description is "The front door of your apartment, leading to the great unknown outside. It is currently[if the front door is open] open. [otherwise if the front door is locked] closed and locked. The key should probably be around here somewhere...  [otherwise if the front door is unlocked] closed but unlocked. [end if]"
+The front door is a locked door.  The description is "The front door of your apartment, leading to the great unknown outside. It is currently[if the front door is open] open. [otherwise if the front door is locked] closed and locked. The key should probably be around here somewhere...  [otherwise if the front door is unlocked] closed but unlocked. [end if]".
+Understand "apartment door" and "door of the apartment" and "door of the room" as front door.
 
 The matching key is the apartment key.  The description of the apartment key is "The small key to your apartment. A crucial component of your low-tech no-electronics mechanical security system." [The apartment key is in the bottom drawer.] The apartment key is small.
 
@@ -136,6 +137,9 @@ Instead of throwing something at a closed openable door, say "Or you could just 
 
 The wall is scenery in the Apartment. The description is "The walls are thin; don't make too much noise.". Understand "walls" as wall. 
 
+The room window is an imaginary scenery in the Apartment. The description is "Your apartment has no windows - the lighting here is 100% artificial. Any view outside would be of the bricks of the opposite building, so it would just have been more wall than view anyway.". 
+
+
 The trash bin is a closed openable container in the Apartment.  The description is "A thin veneer between you and the rest of the world's garbage. It kind of looks like a tiny astronaut suit, if you squint. [line break]It is currently[if the trash bin is open] open.[otherwise] closed.". Rule for printing the name of the bin: say "trash bin in the corner of the room". 
 
 Understand "trash can" and "garbage bin" and "garbage" and "trash" and "rubbish" and "rubbish bin" as trash bin.  Instead of taking the trash bin, say "One man's garbage can be another man's treasure, but only if the two are not the same person.".
@@ -147,8 +151,9 @@ Before throwing the trash bin at something:
 	award the "Vent your frustrations" achievement ;
 	rule fails;
 
-
 The desk is in the apartment. The description is "An old, wooden desk with two drawers. [if unvisited]You once thought it would be cool to carve in a secret compartment but then felt bad about defiling the furniture. You still have the normal drawers to put your stuff in though. [end if]"
+
+Understand "table" as desk.
 
 A closed openable container called the top drawer is part of the desk. The description is "The top drawer of your desk. Looks down on the other one. [line break]It is currently[if the top drawer is open] open.[otherwise] closed." 
 
@@ -158,9 +163,10 @@ A closed openable container called the bottom drawer is part of the desk. The de
 
 Understand "second drawer" or "lower drawer" as the bottom drawer.
 
-A drawers is a scenery in the apartment. The description is "There are two drawers part of your desk, a top one and a bottom one.". Instead of opening drawers, say "You'll have to specify which one.". Instead of taking the drawers, say "They seem to be a part of the desk."
+A drawers is a plural-named scenery in the apartment. The description is "There are two drawers part of your desk, a top one and a bottom one.". Instead of opening drawers, say "You'll have to specify which one.". Instead of taking the drawers, say "They seem to be a part of the desk."
 Understand "desk drawer" as drawers.
 
+The chair is an imaginary scenery in the apartment. The description is "Why have a chair when you rarely leave the bed?".
 
 The bathroom is scenery in the apartment. The description is "It has a bead curtain for privacy. Still damp from the shower you just took."
 
@@ -189,7 +195,14 @@ Understand "dishes" or "plate" as plates.
 Instead of taking plates, say "Tempting as it is, you've already eaten breakfast twice today.".
 Breakfasting is an action applying to nothing. Understand "go to the kitchen" and "go to kitchen" as breakfasting.
 Instead of breakfasting, say "Tempting as it is, you've already eaten breakfast twice today.".
-	
+
+Making is an action applying to one thing. Understand "make [something]" as making.
+Instead of making:
+	if the noun is the bed: 
+		say "There's no point in making your bed if you're going to mess it up later. Actually, that's probably sooner rather than later.";
+	otherwise:
+		say "You lack the creativity.";
+
 Understand "wash [something]" as rubbing.
 Before rubbing:
 	if the noun is plates:
@@ -204,13 +217,24 @@ Before rubbing:
 			rule fails;
 	if the noun is the player:
 		try bathing instead;
+	if the noun is the bed:
+		try making the bed instead;
+	if the noun is the medium rock:
+		say "The sprinkles appear to be fused to the rock. Perhaps they haven't been fully digested yet." instead;
+	if the noun is the wrappings:
+		say "Unlike you, the trash bin has purpose in its life. Why take that away from it?" instead;
 	otherwise:
-		say "Ehh, it's clean enough." instead;
+		if the noun is imaginary:
+			say "[The noun] [if the noun is plural-named]are[otherwise]is[end if] not actually there." instead;
+		otherwise if the noun is plural-named:
+			say "Ehh, they're clean enough." instead;
+		otherwise:
+			say "Ehh, it's clean enough." instead;
 
 
 The bed is a supporter in the apartment. The description is "A vaguely bed-shaped tangle of mattress, pillow, and sheets. You wisely delegate the solving of this knot to future you."
 
-The sheets are scenery in the apartment. The description is "Everybody knows bedsheets don't have to be cleaned, right?"
+The sheets are plural-named scenery in the apartment. The description is "Everybody knows bedsheets don't have to be cleaned, right?"
 
 Instead of taking the sheets, say "There's no point in making your bed if you're going to mess it up later. Actually, that's probably sooner rather than later."
 
@@ -218,7 +242,7 @@ Understand "bedsheets" as sheets.
 
 The mattress is scenery in the apartment. The description is "Some people feel the call to adventure. You happen to have the opposite."
 
-Instead of taking the mattress, say "And where are you going to sleep if you do so?"
+Instead of taking the mattress, say "And where are you going to sleep?"
 
 The pillow is scenery in the apartment. The description is "You can barely tell that there's a pillow somewhere in that giant mess. Luckily you haven't lost your mad object permanence skills."
 
@@ -226,7 +250,7 @@ Instead of taking the pillow, say "If you try to disentangle the sheets to get a
 
 The wardrobe is in the apartment.  The wardrobe is a closed openable container. The description is "A large container that wards your robes. It is currently[if the wardrobe is open] open.[otherwise] closed."
 
-The robes are part of the wardrobe. The description is "If only you could put on a robe and wizard hat!". Instead of taking the robes, say "Alas, they exist only online and in your imagination."
+The robes are part of the wardrobe. The robes are imaginary and plural-named. The description is "If only you could put on a robe and wizard hat!". Instead of taking the robes, say "Alas, they exist only online and in your imagination."
 
 The display shelf is a supporter in the apartment. The shelf is fixed in place.  The description is "The display shelf is nailed to the wall at about waist-height. Too low to comfortably reach while standing, too high for using as a table while sitting down on the floor. Half the reason you never used your 'Rock Stacking Kit™ for Meditation'. [paragraph break]On the display shelf there is a pet rock enclosure .".
 
@@ -240,6 +264,10 @@ Chapter 3 - items in the room
 [calling the phone a device allows it to be switched on/off]
 The phone is a small device on the desk.  The description is "Your smartphone. Not too old, not too new.  Its cameras are taped shut." The phone is switched on.
 
+The tape is part of the phone. The description is "Intercepts any treacherous photons that try to make their way into the phone's cameras.".
+Instead of doing anything other than examining to the tape:
+	say "Nope, not touching that tape."
+
 In the top drawer is an ID card. The description of the ID card is "A little plastic card with an in-built microchip, an image of your likeness, and the numbers that define your existence."
 
 before taking the ID card:
@@ -250,7 +278,7 @@ before taking the ID card:
 
 The grey trenchcoat is a jacket in the wardrobe. The description is "A thick deep-pocketed coat straight out of a noir spy film.".
 
-The pockets are a part of the trenchcoat.  The printed name of the pockets is "trenchcoat's pockets". The pockets are a container.  The description is "Pockets so deep you can't even see them.".
+The pockets are a part of the trenchcoat. The pockets are plural-named.  The printed name of the pockets is "trenchcoat's pockets". The pockets are a container.  The description is "Pockets so deep you can't even see them.".
 
 The apartment key is in the pockets. Before taking the apartment key, say "[if the player does not have the key]You rummage around in the trenchcoat pockets and find where you left the key to your apartment. "
 
@@ -260,23 +288,36 @@ Understand "pocket" as pockets.
 Understand "coat" or "trench coat" as trenchcoat.
 [The grey trenchcoat's pocket contains the apartment key.]
 
+After wearing the grey trenchcoat, say "You put on the grey trenchcoat. You spend an inordinate amount of time closing all the buttons.".
+
+After taking off the grey trenchcoat, say "You undo your hard work with all the buttons. You find it is easier to destroy rather than create.".
+
 The yellow rainjacket is a jacket. "Your yellow rainjacket is balled up in the corner."  
 
 Before dropping the yellow rainjacket, say "You squish the yellow rainjacket into a ball and throw it back in the corner where it belongs."
 
+After wearing the yellow rainjacket, say "You put on the yellow rainjacket. You have become impervious to rain and wind. Theoretically, at least.".
+After taking off the yellow rainjacket, say "You are once again susceptible to the elements."
+
 The rainjacket is in the Apartment. The description of the rainjacket is "A crumpled bright yellow rainjacket. You don't like the attention you feel you get when wearing it. Lucky for you that it hasn't rained here in like forever.  You briefly feel glad that the local farmers are subsidized."
 
-The farmers are imaginary scenery in the Apartment. The description is "You don't know any actual, real-life farmers. You're just prone to odd bouts of empathy, is all.". 
+The farmers are imaginary plural-named scenery in the Apartment. The description is "You don't know any actual, real-life farmers. You're just prone to odd bouts of empathy, is all.". 
 
 Understand "jacket" as rainjacket.
 
 The grey hoodie is a jacket. The description of the hoodie is "A warm muted grey hoodie. ". The hoodie is in the wardrobe.
 Understand "gray hoodie" as grey hoodie.
 
+After wearing the grey hoodie, say "The familiar comfort of the hoodie envelops you. You put up the hood so you can be enveloped further."
+After taking off the grey hoodie, say "You manage to reject the warm embrace of comfortable cloth. Has it always been this cold?"
+
 [headwear]
 
 The ski mask is a facemask in the bottom drawer. The description is "You bought this ski mask in anticipation of a trip that never happened."
 Understand "balaclava" as ski mask.
+
+After wearing the ski mask, say "You put on the ski mask. You feel marginally less scared of encountering unexpected mirrors.".
+After taking off the ski mask, say "You take off the ski mask. Your hair gets marginally more frazzled.".
 
 The baseball cap is a hat on the display shelf. The description is "It's a backwards baseball cap.".
 
@@ -284,10 +325,16 @@ The pet rock enclosure is a not openable container. The pet rock enclosure is pa
 
 The pet rock enclosure contains a medium rock and some small rocks. [The pet rock enclosure is undescribed.] Instead of taking the enclosure, say "You'd rather leave the enclosure on the shelf where you can see it. The rocks will need a home to return to after all this. [line break]You're also afraid it could fall apart, since you made it yourself."
 
-The description of medium rock is "The largest rock in the family, slightly larger than your fist. It's still covered in sprinkles from the last time you decided to feed it." The description of small rocks is "All of the tiny round rocks you've ever bothered to pick up from the sidewalk and other miscellaneous places. They are there to keep the larger one company.".
-The small rocks are small.
+Instead of opening the pet rock enclosure, say "It is already open from the top for maximum visibility. Get it any more open and the rocks could run away!";
 
-The sprinkles are part of the medium rock. The description is "The highest quality you could find by scavenging behind the pet store.". Instead of taking the sprinkles, say "They appear to be fused to the rock. Perhaps they haven't been fully digested yet."
+[this will trigger the disambiguation response]
+Understand "pet rock"  and "rock" as medium rock.
+Understand "pet rock" and "rock" as small rocks.
+
+The description of medium rock is "The largest rock in the family, slightly larger than your fist. It's still covered in sprinkles from the last time you decided to feed it." The description of small rocks is "All of the tiny round rocks you've ever bothered to pick up from the sidewalk and other miscellaneous places. They are there to keep the larger one company.".
+The small rocks are small and plural-named.
+
+The sprinkles are part of the medium rock. The sprinkles are plural-named. The description is "The highest quality you could find by scavenging behind the pet store.". Instead of taking the sprinkles, say "They appear to be fused to the rock. Perhaps they haven't been fully digested yet."
 
 Before taking medium rock, say "Never know when you need to have a moderately heavy stone around to throw at someone. "
 
@@ -295,7 +342,7 @@ The surgical mask is a wearable facemask. The surgical mask is in the top drawer
 
 Understand "mask" as surgical mask.
 
-The dirty discarded food wrappings are in the trash bin. The indefinite article is "some". The description is "You briefly consider learning how to cook."
+The dirty discarded food wrappings are in the trash bin. The wrappings are plural-named. The indefinite article is "some". The description is "You briefly consider learning how to cook."
 Instead of taking the wrappings, say "Not enough food left over to be worth taking it back out.".
 
 The half of a plastic box is in the trash bin. The description is "The remains of the defective 'Rock Stacking Kit™ for Meditation'. You vividly remember the disappointment when discovering it only contained the one rock. [line break]You kept the rock but the box was cast away for its crimes."
@@ -303,6 +350,8 @@ The half of a plastic box is in the trash bin. The description is "The remains o
 xyzzying is an action applying to nothing. Understand "xyzzy" as xyzzying. Instead of xyzzying, say "Oh how you wish that this queer, yet somehow pronounceable magic word would transport you to a secret cave full of magical wonders. But instead it is life itself that is the maze of twisty little passages, all unique and alike at once."
 
 greeding is an action applying to nothing. Understand "take all" and "take everything" and "pick up all" and "pick all up" and "pick up everything" and "pick everything up" and "take both"  and "pick up both" and "pick both up" as greeding. Instead of greeding, say "Self-examination shows that you have a very discrete and limited number of dextrous limbs. Better pick things up one by one."
+
+panexamining is an action applying to nothing. Understand "examine everything" and "x everything" and "examine all" and "x all" as panexamining. Instead of panexamining, say "Sadly you only have two eyes, one brain, and a very limited amount of patience." instead.
 
 Understand "wear [something preferably held]" as wearing. 
 
@@ -376,6 +425,15 @@ Instead of answering the phone:
 	otherwise:
 		say "There is no one to answer to."
 
+Instead of switching off the phone:
+	if the phone is ringing:
+		if Ring Count is 0:
+			say "As you are about to reflexively, paranoically, presciently go and switch off the phone , it suddenly starts ringing on the desk.";
+			award the "Try and nip it in the bud" achievement;
+		otherwise:
+			say "Now that would just be rude, wouldn't it? You can tell that it is your friend calling, anyway. Since when do caller IDs ever lie?";
+	otherwise:
+		rule succeeds;
 
 When phone conversation begins:
 	say "You stifle the anxious jolt and accept the call before you give yourself time to think better of it. You put the phone to your ear and hear the familiar voice of your friend.";
@@ -412,7 +470,7 @@ phone4 is a page.
 
 phone4a is a page. The cdesc is "One last protest, huh. Yeah I'll be there.". It is for phone4. It flips to phone5a.
 
-phone4b is a page. The cdesc is "Once more up to the breach, my brethren. Count me in once more.". It is for phone4. It flips to phone5a.
+phone4b is a page. The cdesc is "Once more unto the breach, my brethren. Count me in once more.". It is for phone4. It flips to phone5a.
 
 phone4c is a page. The cdesc is "I think I'd prefer... to stay inside. It might be dangerous. ". It is for phone4.  It flips to phone5b.
 
@@ -466,17 +524,29 @@ Instead of sleeping:
 		award the "FTS I'm out" achievement;
 		wait for any key;
 		end the story.
+		
 
-Calling is an action applying to one thing. Understand "call [something]" as calling. [Understand "call [anything]" as calling.]
+Yelling is an action applying to nothing. Understand "yell" and "call out" and "scream" and "talk" as yelling.
 
-Calling back is an action applying to nothing. Understand "call back" and "call friend" and "call my friend" and "call friend back" and "call them back" and "call them" as calling back.
+Carry out yelling:
+	say "You call out, but nobody comes.";
 
-Understand "use phone" as calling back;
+Calling is an action applying to one thing. Understand "call [something]" as calling.
 
 Carry out calling:
 	say "You call out, but nobody comes.";
 	if Tired is true:
 		say "You could probably call your friend, though.";
+
+Calling else is an action applying to nothing. Understand "dial 911" and "call the police" and "call police" and "call parents" and "call mom" and "call dad" as calling else.
+
+Carry out calling else:
+	say "You would very much rather not, sorry."
+
+
+Calling back is an action applying to nothing. Understand "call back" and "call friend" and "call my friend" and "call friend back" and "call them back" and "call them" as calling back.
+
+Understand "use phone" as calling back;
 	
 Carry out calling back:
 	if Tired is false:
@@ -491,7 +561,7 @@ phone7a is a page. "'Yeah, that's right. I could pick you up at yours and give y
 phone7b is a page. "'Ah that's good to hear. I knew you'd come around to it. I could pick you up at yours and give you a ride, if you want?'". It flips to phone8.
 
 phone8 is a page.
-
+call wa
 phone8a is a page. The cdesc is "That would be kind of you, thanks." It is for phone8. It flips to phone9a. 	
 
 A page-toggle rule for phone8a:
@@ -642,7 +712,7 @@ protest1 is a page.  “You suddenly feel a rough hand grabbing your shoulder fr
 
 protest_go1 is a page. The cdesc is "Don't resist; do as you're told". It is for protest1. It flips to protest_go2.
 
-protest_go2 is a page. "You allow yourself to be handcuffed and guided to a police van. The officers round up as many people as they can fit into it and drive you away to the police station.". It is an end-page.
+protest_go2 is a page. "You allow yourself to be handcuffed and guided to a police van. The officers round up as many people as they can fit into it and drive you away to the police station.". [It is an end-page.]
 
 A page-toggle rule for protest_go2:
 	now Arrested is true;
@@ -810,9 +880,12 @@ The Police Station is a room.
 Other Crimes is a truth state that varies. Other Crimes is initially false.
 
 When At Police Station begins:
-	cyoa teleport to Police Station;
-	switch from cyoa, without looking;
-	say "Upon arriving at the police station, you don’t have much time to gawk at the frenzy of activity. More and more people are brought in by the minute. You see civilians being searched, and others sitting around, stuck in jail cells.[line break]";
+	wait for any key;
+	cyoa teleport to The Police Station;
+	[now player is in The Police Station;]
+	[switch from cyoa, without looking;]
+	switch from cyoa;
+	say "Upon arriving, you don’t have much time to gawk at the frenzy of activity in the station. More and more people are brought in by the minute. You see civilians being searched, and others sitting around, stuck in jail cells.[line break]";
 	wait for any key;
 	say "By some quirk of bureaucracy, you are instead taken straight to an interrogation room. You wonder whether that means that you look too dangerous, or not dangerous enough.[paragraph break]";
 	wait for any key;
@@ -847,7 +920,7 @@ When At Police Station begins:
 		if Other Crimes is true:
 			say "'[paragraph break]";
 			wait for any key;
-		say  "‘[if Suspicion is 1]We know you’ve done something. [otherwise]And the biggest indicator of your guilt? [end if]You resisted arrest. Innocent people don’t run. ";
+		say  "‘[if Suspicion is 1]We know you’re guilty of something. [otherwise]And the biggest indicator of your guilt? [end if]You resisted arrest. Innocent people don’t run. ";
 	say "'[paragraph break]";
 	wait for any key;
 	if Suspicion is 6:
@@ -894,6 +967,7 @@ achievement	description	validation	awarded
 "Man's Not Hot"	"One plus one plus one is three"	three jackets achievement rule	false
 "Urban Evasion"	"Your decisive strike and immersive blending got you off the hook"	--	false
 "Productive member of society"	"You made life much easier for your imaginary roommate"	--	false
+"Try and nip it in the bud"	"You tried to use future knowledge to cause a paradox, but got foiled by authorial fiat."	--	false
 
 This is the phone achievement rule:
 	if Phone Conversation has not happened:
