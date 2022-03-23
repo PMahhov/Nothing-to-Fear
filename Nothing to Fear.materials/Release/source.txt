@@ -26,7 +26,7 @@ Release along with the source text.
 
 Release along with the "Quixe" interpreter. 
 
-The story description is "You are invited to a protest. Don't get caught by the State! [paragraph break]A text adventure where playing dress-up makes Big Brother look the other way. Do you have what it takes to go out on a leisurely stroll and come back in one piece?"
+The story description is "You are invited to a protest. Don't get caught by the State! A text adventure where playing dress-up makes Big Brother look the other way. Do you have what it takes to go out on a leisurely stroll and come back in one piece?"
 
 Release along with cover art ("A slightly open door through which a sliver of light comes into a darkened room. A smartphone with a cracked screen. Its camera is recording.").
 
@@ -38,7 +38,7 @@ Part 1 - Main gameplay area
 
 When play begins:
 	choose row 1 in Table of Basic Help Options;
-	now description entry is "Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and beta testing by Oscar Bray.[paragraph break]Further beta testing by Vandan Pokal, Tengiz Ibrayev, and Fabian. [paragraph break]Github website created thanks to Ben Pang." 
+	now description entry is "Version 1.3.1 of Nothing to Fear.[paragraph break]Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and beta testing by Oscar Bray.[paragraph break]Further beta testing by Vandan Pokal, Tengiz Ibrayev, and Fabian. [paragraph break]Github website created thanks to Ben Pang." 
 
 The Apartment is a room.  "[if unvisited]You are coming out of the bathroom, having just taken a shower and moderately dressed yourself. You just about manage to avoid looking at the stack of uncleaned plates in the kitchen on the other side of the room. [end if]This is the small studio apartment you live in. It would be messier if you had more stuff. "
 
