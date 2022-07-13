@@ -1,6 +1,6 @@
 "Nothing to Fear" by Peter Mahhov
 
-[this is version 1.3.1 of the game]
+[this is version 1.3.2 of the game]
 
 include Basic Screen Effects by Emily Short.
 
@@ -137,7 +137,7 @@ Instead of throwing something at a closed openable door, say "Or you could just 
 
 The wall is scenery in the Apartment. The description is "The walls are thin; don't make too much noise.". Understand "walls" as wall. 
 
-The room window is an imaginary scenery in the Apartment. The description is "Your apartment has no windows - the lighting here is 100% artificial. Any view outside would be of the bricks of the opposite building, so it would just have been more wall than view anyway.". 
+The view window is an imaginary scenery in the Apartment. The description is "Your apartment has no windows - the lighting here is 100% artificial. Any view outside would be of the bricks of the opposite building, so it would just have been more wall than view anyway.". 
 
 
 The trash bin is a closed openable container in the Apartment.  The description is "A thin veneer between you and the rest of the world's garbage. It kind of looks like a tiny astronaut suit, if you squint. [line break]It is currently[if the trash bin is open] open.[otherwise] closed.". Rule for printing the name of the bin: say "trash bin in the corner of the room". 
@@ -163,7 +163,7 @@ A closed openable container called the bottom drawer is part of the desk. The de
 
 Understand "second drawer" or "lower drawer" as the bottom drawer.
 
-A drawers is a plural-named scenery in the apartment. The description is "There are two drawers part of your desk, a top one and a bottom one.". Instead of opening drawers, say "You'll have to specify which one.". Instead of taking the drawers, say "They seem to be a part of the desk."
+A drawers is a plural-named scenery in the apartment. The description is "There are two drawers part of your desk, a top one and a bottom one.". Instead of opening drawers, say "You'll have to specify which one - top or bottom.". Instead of taking the drawers, say "They seem to be a part of the desk."
 Understand "desk drawer" as drawers.
 
 The chair is an imaginary scenery in the apartment. The description is "Why have a chair when you rarely leave the bed?".
@@ -202,6 +202,8 @@ Instead of making:
 		say "There's no point in making your bed if you're going to mess it up later. Actually, that's probably sooner rather than later.";
 	otherwise:
 		say "You lack the creativity.";
+
+Understand "room" as apartment.
 
 Understand "wash [something]" as rubbing.
 Before rubbing:
@@ -419,7 +421,7 @@ Instead of answering:
 
 Instead of answering the phone:
 	if the phone is not carried:
-		say "Your phone is not voice-activated, you'll have to pick it up before answering it.";
+		say "Your phone is not voice-activated, you'll have to [bold type]pick up the phone[roman type] before answering it.";
 	otherwise if the phone is ringing:
 		now the phone is speaking;
 	otherwise:
