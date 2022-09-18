@@ -1,6 +1,6 @@
 "Nothing to Fear" by Peter Mahhov
 
-[this is version 1.3.2 of the game]
+[this is version 1.3.3 of the game]
 
 include Basic Screen Effects by Emily Short.
 
@@ -521,8 +521,7 @@ Instead of sleeping:
 	if Tired is false:
 		say "You're not feeling any more tired than the usual."	;
 	otherwise:
-		say "You drop down onto your mattress and once again succumb to the temptation of a midday nap. You contemplate the sleepless night that will undoubtedly lay ahead. 'Not going to feel any better in a prison cell', you say to yourself. The thought is of little comfort, though.";
-[		say "[paragraph break]";]
+		say "You drop down onto your mattress and once again succumb to the temptation of a midday nap. You contemplate the sleepless night that will undoubtedly lay ahead. 'Not going to feel any better in a prison cell', you say to yourself. The thought is of little comfort, though. [paragraph break]";
 		award the "FTS I'm out" achievement;
 		wait for any key;
 		end the story.
@@ -856,20 +855,26 @@ When No Search begins:
 	if Surveillance is 0:
 		award the "Non-Person" achievement;
 	if Arrested is true:
-		say "[paragraph break]Somewhere, someplace far away, an algorithm refers the tracking of your call to a live agent. You are now a person of interest, after all. ";
+		say "[paragraph break]Somewhere, someplace far away, an algorithm refers the tracking of your call to a live agent. You are now a person of interest, after all. [paragraph break]";
 		wait for any key;
 		if Surveillance is 10:
-			say "[line break]The alert, however, was not actually necessary, as you are already under watch by a rotating team. It's fortunate that your life is not excessively entertaining.";
+			say "[line break]The alert, however, was not actually necessary, as you are already under watch by a rotating team. It's fortunate that your life is not excessively entertaining. [paragraph break]";
 			award the "Human Show" achievement;		
 			wait for any key;
 		end the story;
 	otherwise if Surveillance < 2: 
+		say "[paragraph break]";
 		end the story;
 	otherwise:
-		say "[paragraph break]Somewhere, someplace far away, an algorithm referred the tracking of your call to a live agent. You are now a person of interest, after all. ";
+		say "[paragraph break]Somewhere, someplace far away, an algorithm referred the tracking of your call to a live agent. You are now a person of interest, after all. [paragraph break]";
 		wait for any key;
 		end the story.
 	
+After printing the player's obituary:
+	say "[line break]Final game statistics: ";
+	say "[line break] Surveillance level: [Surveillance]/10";
+	say "[line break] Conspicuousness at protest: [Conspicuousness]/5";
+	say "[line break] Police suspicion: [Suspicion]/6";
 		
 
 Chapter 4 - getting arrested
@@ -930,13 +935,13 @@ When At Police Station begins:
 		award the "Wretched Recidivist" achievement;
 		say "[paragraph break]";
 		wait for any key;
-		say "You don't get a free phone call from your prison cell.";
+		say "You don't get a free phone call from your prison cell. [paragraph break]";
 		wait for any key;
 		end the story;
 	otherwise if Suspicion  > 3:
 		say "‘I’ll be frank, individually, none of these would warrant any charges in and of itself. But combined together, these paint a picture that does not look very good on you. Better hope the judge is feeling lenient.’[paragraph break]";
 		wait for any key;
-		say "You spend your one free phone call attempting to call your friend. They never answer the phone. ";
+		say "You spend your one free phone call attempting to call your friend. They never answer the phone. [paragraph break]";
 		wait for any key;
 		end the story;
 	otherwise if Suspicion is 0:
