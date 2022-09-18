@@ -1,0 +1,1024 @@
+"Nothing to Fear" by Peter Mahhov
+
+[this is version 1.3.3 of the game]
+
+include Basic Screen Effects by Emily Short.
+
+include Basic Help Menu by Emily Short	[adds general help/about menu]
+
+include Locksmith by Emily Short	[makes locking/unlocking/opening/closing doors much less frustrating]
+
+include Object Kinds by Brady Garvin		[less cumbersome item categorization]
+
+Include Achievements by Juhana Leinonen	[adds achievements functionality]
+
+include Smarter Parser by Aaron Reed		[correction for common parsing mistakes]
+
+include Poor Man's Mistype by Aaron Reed	[correction for common typos]
+
+Include Flexible Windows by Jon Ingold	[requirement for sidebar]
+
+Include Common Commands Sidebar customized by Alice Grove.	[adds sidebar]
+
+Include Hybrid Choices by AW Freyr		[adds discrete choice options]
+
+Release along with the source text. 
+
+Release along with the "Quixe" interpreter. 
+
+The story description is "You are invited to a protest. Don't get caught by the State! A text adventure where playing dress-up makes Big Brother look the other way. Do you have what it takes to go out on a leisurely stroll and come back in one piece?"
+
+Release along with cover art ("A slightly open door through which a sliver of light comes into a darkened room. A smartphone with a cracked screen. Its camera is recording.").
+
+Commenting is an action out of world applying to one topic. Understand "* [text]" as commenting.
+Carry out commenting:
+say "Comment noted."
+
+Part 1 - Main gameplay area
+
+When play begins:
+	choose row 1 in Table of Basic Help Options;
+	now description entry is "Version 1.3.1 of Nothing to Fear.[paragraph break]Extensions by: Aaron Reed, Alice Grove, AW Freyr, Brady Garvin, Emily Short, Jon Ingold, Juhana Leinonen.[paragraph break]Cover art and beta testing by Oscar Bray.[paragraph break]Further beta testing by Vandan Pokal, Tengiz Ibrayev, and Fabian. [paragraph break]Github website created thanks to Ben Pang." 
+
+The Apartment is a room.  "[if unvisited]You are coming out of the bathroom, having just taken a shower and moderately dressed yourself. You just about manage to avoid looking at the stack of uncleaned plates in the kitchen on the other side of the room. [end if]This is the small studio apartment you live in. It would be messier if you had more stuff. "
+
+The player is in the Apartment.
+[A window is in the apartment. ]
+
+[General rules:]
+
+Understand "examine [things]" as examining.	[allows the command "examine all"]
+
+Instead of examining the player, say "You count and find slightly more than the average number of arms and legs. Two of each, to be precise."
+
+
+Instead of taking inventory: 
+	say "[if the player carries something][We]['re] carrying [a list of things carried by the player][otherwise][We]['re] empty-handed"; 
+	say "[if the player wears something]. [We]['re] wearing [a list of things worn by the player][end if]." 
+
+
+Understand "find [any thing]" as finding. 
+
+Finding is an action applying to one visible thing. 
+
+Carry out finding: 
+	if the player is carrying the noun: 
+		say "You're holding [the noun]!"; 
+	otherwise: 
+		say "You left [the noun] [if the noun is on a supporter]on[otherwise]in[end if] [the holder of the noun]." 
+
+Understand the commands "access" as "open". 
+
+Understand "deposit [something] in [an open container]" as inserting it into. 
+
+A thing can be imaginary or real. A thing is usually real.
+Instead of doing anything other than examining to an imaginary thing:
+	say "[The noun] [if the noun is plural-named]are[otherwise]is[end if] not actually there."
+
+Chapter 1 - player's clothes
+
+Equipment is a kind of wearable thing.
+
+jacket is a kind of equipment.
+hat is a kind of equipment.
+facemask is a kind of equipment.
+
+The player wears a white T-shirt.  Understand "shirt" as T-shirt. The description of the white T-shirt is "Have to eat carefully while wearing this.".
+
+instead of taking off T-shirt, say "You don't particularly like taking off your shirt.".
+instead of dropping T-shirt, say "You don't particularly like taking off your shirt.".
+
+The player wears a pair of jeans. The jeans are plural-named. The description of the jeans is "The universal legwear. And a good thing, too, because it's the only pair you have." The indefinite article of the pair of jeans is "a".
+Understand "pants" as jeans.
+
+instead of dropping jeans, say "These jeans are comfortable and you do not want to take them off.".
+instead of taking off jeans, say "These jeans are comfortable and you do not want to take them off."
+
+The tennis shoes are in the bottom drawer. The shoes are wearable and plural-named. The description of the shoes is "Pristine good quality shoes that are both light and durable. Would be useful if you ever left the room.". Tennis shoes are an unopenable container. The indefinite article of the tennis shoes is "your".
+Understand "shoe" as shoes.
+
+[allow only wearing one type of jacket/hat at once]
+check wearing Equipment:
+	repeat with current equipment running through all equipment worn by the player:
+		if the noun is worn by the player:
+			say "Cannot put on [the noun] since you're already wearing it.";
+			rule fails;
+		otherwise:
+			if the object kind of the noun is the object kind of the current equipment:
+				say "Cannot put on [the noun] since you're already wearing [the current equipment] and they're both [the singular of object kind of the noun]s. Remove [the current equipment] first." instead.
+
+[ability to insert small things into shoes]
+A thing can be small.
+
+Before inserting noun into shoes, if noun is not small, instead say "The [noun] is too big to fit in your shoes.".
+
+After inserting noun into shoes, say "[if player is wearing shoes]You take off a shoe, put the [noun] into it, and put the shoe back on. [otherwise]You put the [noun] into your shoes. [end if][if noun is small rocks]Walking with these in will look and feel quite uncomfortable. Hopefully this will fool any gait-tracking cameras out there."
+
+After removing noun from shoes , say "[if player is wearing shoes]You take off a shoe, remove the [noun] from it, and put the shoe back on. [otherwise]You remove the [noun] from your shoes."
+
+
+Chapter 2 - furniture in the apartment
+
+Understand "examine apartment" as looking.
+
+[the door]
+
+The front door is a locked door.  The description is "The front door of your apartment, leading to the great unknown outside. It is currently[if the front door is open] open. [otherwise if the front door is locked] closed and locked. The key should probably be around here somewhere...  [otherwise if the front door is unlocked] closed but unlocked. [end if]".
+Understand "apartment door" and "door of the apartment" and "door of the room" as front door.
+
+The matching key is the apartment key.  The description of the apartment key is "The small key to your apartment. A crucial component of your low-tech no-electronics mechanical security system." [The apartment key is in the bottom drawer.] The apartment key is small.
+
+The front door is outside of the Apartment. Through it is The Protest. [this is so the door does not appear in the protest area]
+
+Instead of throwing something at a closed openable door, say "Or you could just use the handle like anyone else, of course." 
+
+
+[other furniture in the apartment]
+
+The wall is scenery in the Apartment. The description is "The walls are thin; don't make too much noise.". Understand "walls" as wall. 
+
+The view window is an imaginary scenery in the Apartment. The description is "Your apartment has no windows - the lighting here is 100% artificial. Any view outside would be of the bricks of the opposite building, so it would just have been more wall than view anyway.". 
+
+
+The trash bin is a closed openable container in the Apartment.  The description is "A thin veneer between you and the rest of the world's garbage. It kind of looks like a tiny astronaut suit, if you squint. [line break]It is currently[if the trash bin is open] open.[otherwise] closed.". Rule for printing the name of the bin: say "trash bin in the corner of the room". 
+
+Understand "trash can" and "garbage bin" and "garbage" and "trash" and "rubbish" and "rubbish bin" as trash bin.  Instead of taking the trash bin, say "One man's garbage can be another man's treasure, but only if the two are not the same person.".
+
+Squinting is an action applying to nothing. Understand "squint" as squinting. Instead of squinting, say "The trash bin is only pretending to be an astronaut." 
+
+Before throwing the trash bin at something:
+	say "As much as you'd love a good emergency yeeting, there are more practical tasks you should attend to." ;
+	award the "Vent your frustrations" achievement ;
+	rule fails;
+
+The desk is in the apartment. The description is "An old, wooden desk with two drawers. [if unvisited]You once thought it would be cool to carve in a secret compartment but then felt bad about defiling the furniture. You still have the normal drawers to put your stuff in though. [end if]"
+
+Understand "table" as desk.
+
+A closed openable container called the top drawer is part of the desk. The description is "The top drawer of your desk. Looks down on the other one. [line break]It is currently[if the top drawer is open] open.[otherwise] closed." 
+
+Understand "first drawer" or "upper drawer" as the top drawer.
+
+A closed openable container called the bottom drawer is part of the desk. The description is "The bottom drawer of your desk. More grounded than the one on top. [line break]It is currently[if the bottom drawer is open] open.[otherwise] closed."
+
+Understand "second drawer" or "lower drawer" as the bottom drawer.
+
+A drawers is a plural-named scenery in the apartment. The description is "There are two drawers part of your desk, a top one and a bottom one.". Instead of opening drawers, say "You'll have to specify which one - top or bottom.". Instead of taking the drawers, say "They seem to be a part of the desk."
+Understand "desk drawer" as drawers.
+
+The chair is an imaginary scenery in the apartment. The description is "Why have a chair when you rarely leave the bed?".
+
+The bathroom is scenery in the apartment. The description is "It has a bead curtain for privacy. Still damp from the shower you just took."
+
+The bead curtain is scenery in the apartment. The description is "It would probably have made things awkward if you didn't live alone.". Instead of taking the bead curtain, say "You're leaving it in place in honour of the last person to live here. Also if you ever get a TV you could watch it from the bathroom!"
+
+Understand "take shower" or "take a shower" or "take bath" or "take a bath" or "bathe" as bathing. Bathing is an action applying to nothing.
+Instead of bathing, say "Luckily you've just taken a shower a little while ago."
+Understand "shower" as bathroom.
+
+Biologizing is an action applying to nothing.
+Understand "go to bathroom" and "go to the bathroom" and "use toilet" as biologizing.
+Instead of biologizing, say "Luckily you've just went a little while ago.";
+
+
+The fridge is scenery in the apartment. The description is "Tempting as it is, you've already eaten breakfast twice today."
+Instead of opening fridge, say "Tempting as it is, you've already eaten breakfast twice today."
+Understand "refridgerator" as fridge.
+
+The kitchen area is scenery in the apartment. The description is "Tempting as it is, you've already eaten breakfast twice today."
+
+Things can be dirty or clean.
+
+The plates are scenery in the apartment.  The plates is dirty. The description is "[if plates is dirty]A messy pile of dirty plates in the sink. [otherwise]A messy pile of clean plates besides the sink.".
+Understand "dishes" or "plate" as plates.
+
+Instead of taking plates, say "Tempting as it is, you've already eaten breakfast twice today.".
+Breakfasting is an action applying to nothing. Understand "go to the kitchen" and "go to kitchen" as breakfasting.
+Instead of breakfasting, say "Tempting as it is, you've already eaten breakfast twice today.".
+
+Making is an action applying to one thing. Understand "make [something]" as making.
+Instead of making:
+	if the noun is the bed: 
+		say "There's no point in making your bed if you're going to mess it up later. Actually, that's probably sooner rather than later.";
+	otherwise:
+		say "You lack the creativity.";
+
+Understand "room" as apartment.
+
+Understand "wash [something]" as rubbing.
+Before rubbing:
+	if the noun is plates:
+		if the plates is dirty:
+			now the plates is clean;
+			say "You grudgingly go and clean the plates. You could eat off of these things!";
+			award the "Productive member of society" achievement;
+			rule fails;
+		otherwise:
+			say "You briefly stare at the washed dishes, carefully avoiding the reflection of yourself.";
+			say "They're clean enough for now.";
+			rule fails;
+	if the noun is the player:
+		try bathing instead;
+	if the noun is the bed:
+		try making the bed instead;
+	if the noun is the medium rock:
+		say "The sprinkles appear to be fused to the rock. Perhaps they haven't been fully digested yet." instead;
+	if the noun is the wrappings:
+		say "Unlike you, the trash bin has purpose in its life. Why take that away from it?" instead;
+	otherwise:
+		if the noun is imaginary:
+			say "[The noun] [if the noun is plural-named]are[otherwise]is[end if] not actually there." instead;
+		otherwise if the noun is plural-named:
+			say "Ehh, they're clean enough." instead;
+		otherwise:
+			say "Ehh, it's clean enough." instead;
+
+
+The bed is a supporter in the apartment. The description is "A vaguely bed-shaped tangle of mattress, pillow, and sheets. You wisely delegate the solving of this knot to future you."
+
+The sheets are plural-named scenery in the apartment. The description is "Everybody knows bedsheets don't have to be cleaned, right?"
+
+Instead of taking the sheets, say "There's no point in making your bed if you're going to mess it up later. Actually, that's probably sooner rather than later."
+
+Understand "bedsheets" as sheets.
+
+The mattress is scenery in the apartment. The description is "Some people feel the call to adventure. You happen to have the opposite."
+
+Instead of taking the mattress, say "And where are you going to sleep?"
+
+The pillow is scenery in the apartment. The description is "You can barely tell that there's a pillow somewhere in that giant mess. Luckily you haven't lost your mad object permanence skills."
+
+Instead of taking the pillow, say "If you try to disentangle the sheets to get at the pillow, you're going to feel guilty for not making your bed. You know how this goes."
+
+The wardrobe is in the apartment.  The wardrobe is a closed openable container. The description is "A large container that wards your robes. It is currently[if the wardrobe is open] open.[otherwise] closed."
+
+The robes are part of the wardrobe. The robes are imaginary and plural-named. The description is "If only you could put on a robe and wizard hat!". Instead of taking the robes, say "Alas, they exist only online and in your imagination."
+
+The display shelf is a supporter in the apartment. The shelf is fixed in place.  The description is "The display shelf is nailed to the wall at about waist-height. Too low to comfortably reach while standing, too high for using as a table while sitting down on the floor. Half the reason you never used your 'Rock Stacking Kit™ for Meditation'. [paragraph break]On the display shelf there is a pet rock enclosure .".
+
+
+Taking the wardrobe is picking up furniture. Taking the desk is picking up furniture. Taking the bed is picking up furniture. 
+Instead of picking up furniture, say "It is so heavy you can't even lift it. Truly the furniture is no good for a workout."
+
+
+Chapter 3 - items in the room
+
+[calling the phone a device allows it to be switched on/off]
+The phone is a small device on the desk.  The description is "Your smartphone. Not too old, not too new.  Its cameras are taped shut." The phone is switched on.
+
+The tape is part of the phone. The description is "Intercepts any treacherous photons that try to make their way into the phone's cameras.".
+Instead of doing anything other than examining to the tape:
+	say "Nope, not touching that tape."
+
+In the top drawer is an ID card. The description of the ID card is "A little plastic card with an in-built microchip, an image of your likeness, and the numbers that define your existence."
+
+before taking the ID card:
+	say "Yup, that's you alright. You put the ID card away before you have to spend any more time looking at that ghastly picture. "
+
+
+[jackets]
+
+The grey trenchcoat is a jacket in the wardrobe. The description is "A thick deep-pocketed coat straight out of a noir spy film.".
+
+The pockets are a part of the trenchcoat. The pockets are plural-named.  The printed name of the pockets is "trenchcoat's pockets". The pockets are a container.  The description is "Pockets so deep you can't even see them.".
+
+The apartment key is in the pockets. Before taking the apartment key, say "[if the player does not have the key]You rummage around in the trenchcoat pockets and find where you left the key to your apartment. "
+
+
+Understand "pocket" as pockets.
+
+Understand "coat" or "trench coat" as trenchcoat.
+[The grey trenchcoat's pocket contains the apartment key.]
+
+After wearing the grey trenchcoat, say "You put on the grey trenchcoat. You spend an inordinate amount of time closing all the buttons.".
+
+After taking off the grey trenchcoat, say "You undo your hard work with all the buttons. You find it is easier to destroy rather than create.".
+
+The yellow rainjacket is a jacket. "Your yellow rainjacket is balled up in the corner."  
+
+Before dropping the yellow rainjacket, say "You squish the yellow rainjacket into a ball and throw it back in the corner where it belongs."
+
+After wearing the yellow rainjacket, say "You put on the yellow rainjacket. You have become impervious to rain and wind. Theoretically, at least.".
+After taking off the yellow rainjacket, say "You are once again susceptible to the elements."
+
+The rainjacket is in the Apartment. The description of the rainjacket is "A crumpled bright yellow rainjacket. You don't like the attention you feel you get when wearing it. Lucky for you that it hasn't rained here in like forever.  You briefly feel glad that the local farmers are subsidized."
+
+The farmers are imaginary plural-named scenery in the Apartment. The description is "You don't know any actual, real-life farmers. You're just prone to odd bouts of empathy, is all.". 
+
+Understand "jacket" as rainjacket.
+
+The grey hoodie is a jacket. The description of the hoodie is "A warm muted grey hoodie. ". The hoodie is in the wardrobe.
+Understand "gray hoodie" as grey hoodie.
+
+After wearing the grey hoodie, say "The familiar comfort of the hoodie envelops you. You put up the hood so you can be enveloped further."
+After taking off the grey hoodie, say "You manage to reject the warm embrace of comfortable cloth. Has it always been this cold?"
+
+[headwear]
+
+The ski mask is a facemask in the bottom drawer. The description is "You bought this ski mask in anticipation of a trip that never happened."
+Understand "balaclava" as ski mask.
+
+After wearing the ski mask, say "You put on the ski mask. You feel marginally less scared of encountering unexpected mirrors.".
+After taking off the ski mask, say "You take off the ski mask. Your hair gets marginally more frazzled.".
+
+The baseball cap is a hat on the display shelf. The description is "It's a backwards baseball cap.".
+
+The pet rock enclosure is a not openable container. The pet rock enclosure is part of the shelf.  The description is "A little enclosed zoo built to keep your pet rocks together. Makes it easier to feed them and stops them from running away. It's transparent and open from the top for maximum visibility."
+
+The pet rock enclosure contains a medium rock and some small rocks. [The pet rock enclosure is undescribed.] Instead of taking the enclosure, say "You'd rather leave the enclosure on the shelf where you can see it. The rocks will need a home to return to after all this. [line break]You're also afraid it could fall apart, since you made it yourself."
+
+Instead of opening the pet rock enclosure, say "It is already open from the top for maximum visibility. Get it any more open and the rocks could run away!";
+
+[this will trigger the disambiguation response]
+Understand "pet rock"  and "rock" as medium rock.
+Understand "pet rock" and "rock" as small rocks.
+
+The description of medium rock is "The largest rock in the family, slightly larger than your fist. It's still covered in sprinkles from the last time you decided to feed it." The description of small rocks is "All of the tiny round rocks you've ever bothered to pick up from the sidewalk and other miscellaneous places. They are there to keep the larger one company.".
+The small rocks are small and plural-named.
+
+The sprinkles are part of the medium rock. The sprinkles are plural-named. The description is "The highest quality you could find by scavenging behind the pet store.". Instead of taking the sprinkles, say "They appear to be fused to the rock. Perhaps they haven't been fully digested yet."
+
+Before taking medium rock, say "Never know when you need to have a moderately heavy stone around to throw at someone. "
+
+The surgical mask is a wearable facemask. The surgical mask is in the top drawer. The description is "A relic of a bygone era. People now only wear them anymore because of the retro look. Still a pretty popular accessory.".
+
+Understand "mask" as surgical mask.
+
+The dirty discarded food wrappings are in the trash bin. The wrappings are plural-named. The indefinite article is "some". The description is "You briefly consider learning how to cook."
+Instead of taking the wrappings, say "Not enough food left over to be worth taking it back out.".
+
+The half of a plastic box is in the trash bin. The description is "The remains of the defective 'Rock Stacking Kit™ for Meditation'. You vividly remember the disappointment when discovering it only contained the one rock. [line break]You kept the rock but the box was cast away for its crimes."
+
+xyzzying is an action applying to nothing. Understand "xyzzy" as xyzzying. Instead of xyzzying, say "Oh how you wish that this queer, yet somehow pronounceable magic word would transport you to a secret cave full of magical wonders. But instead it is life itself that is the maze of twisty little passages, all unique and alike at once."
+
+greeding is an action applying to nothing. Understand "take all" and "take everything" and "pick up all" and "pick all up" and "pick up everything" and "pick everything up" and "take both"  and "pick up both" and "pick both up" as greeding. Instead of greeding, say "Self-examination shows that you have a very discrete and limited number of dextrous limbs. Better pick things up one by one."
+
+panexamining is an action applying to nothing. Understand "examine everything" and "x everything" and "examine all" and "x all" as panexamining. Instead of panexamining, say "Sadly you only have two eyes, one brain, and a very limited amount of patience." instead.
+
+Understand "wear [something preferably held]" as wearing. 
+
+Understand "take [things]" as taking. 
+Understand "drop [things preferably held]" as dropping. 
+
+
+Understand "put [other things] in/inside/into [something]" as inserting it into
+
+Part 2 - Variable tracking
+
+Surveillance is a number that varies.	[how much information does the government have on the player? currently or in the future if things don't change]
+The Surveillance is initially 0.	[max surv is currently 10]
+
+[specific tracked actions during phone conversation]
+Badmouthed Government is a truth state that varies. Badmouthed Government is initially false.
+Mentioned Keyword is a truth state that varies. Mentioned Keyword is initially false.
+
+Being Driven is a truth state that varies. Being Driven is initially false.	[does the player accept the ride with their friend?]
+
+Face Covered is a truth state that varies. Face Covered is initially false.
+Gait Changed is a truth state that varies. Gait Changed is initially false.
+Every turn:
+	if small rocks are in shoes:
+		now Gait Changed is true;
+	otherwise:
+		now Gait Changed is false;
+	if the player is wearing a facemask:
+		now Face Covered is true;
+	otherwise:
+		now Face Covered is false;
+
+
+Conspicuousness is a number that varies.	[ how noticeable is the player? ]
+The Conspicuousness is initially 1.	[max is currently 5]
+
+Suspicion is a number that varies. [ how likely it is that the player is going to be charged after arrest? ]
+The Suspicion is initially 0.	[max sus is currently 6]
+
+Resisted Arrest is a number that varies.  [how many times has the player resisted arrest?]
+Resisted Arrest is initially 0. [value currently ranges from 0 to 1]
+
+Protest knowledge is a truth state that varies. [ does the player know that a protest is going to happen? ]
+
+Tired is a truth state that varies. [can the player end the game by going to bed?]
+
+When play begins:
+	now Protest knowledge is false;
+	now Tired is false;
+
+Part 3 - Scenes
+
+Chapter 1 - Initial phone conversation
+
+The phone can be ringing, speaking, or silent. The phone is ringing. Every turn when the phone is ringing, say "The phone is ringing."
+
+Ring Count is a number that varies. Ring Count is initially 0. Every turn when the phone is ringing, increase Ring Count by 1.
+
+Phone conversation is a scene. Phone conversation begins when the phone is speaking. Phone conversation ends when the phone is silent.
+		
+Answering is an action applying to one thing. Understand "answer [something]" as answering. 
+
+Instead of answering:
+	say "But it hasn't asked you anything... has it?"
+
+Instead of answering the phone:
+	if the phone is not carried:
+		say "Your phone is not voice-activated, you'll have to [bold type]pick up the phone[roman type] before answering it.";
+	otherwise if the phone is ringing:
+		now the phone is speaking;
+	otherwise:
+		say "There is no one to answer to."
+
+Before switching off the phone:
+	if the phone is ringing:
+		if Ring Count is 0:
+			say "As you are about to reflexively, paranoically, presciently go and switch off the phone, it suddenly starts ringing on the desk.";
+			award the "Try and nip it in the bud" achievement;
+			rule fails;
+		otherwise:
+			say "Now that would just be rude, wouldn't it? You can tell that it is your friend calling, anyway. Since when do caller IDs ever lie?";
+			rule fails;
+
+When phone conversation begins:
+	say "You stifle the anxious jolt and accept the call before you give yourself time to think better of it. You put the phone to your ear and hear the familiar voice of your friend.";
+	switch to cyoa at phone1
+	
+When phone conversation ends:
+	now the phone is silent.
+	
+	
+phone1 is a page.
+"'Hey, I know it's been a while since we talked. Listen, I've got word that a peaceful public meetup is quietly being organized in the main square. And you used to be so passionate about these things...'"
+
+phone2a is a page. The cdesc is "That's right, I say the government can go fuck themselves! And if they won't step down peacefully we'll do it for them." It is for phone1. It flips to phone3a.
+
+A page-toggle rule for phone2a:
+	increase Surveillance by 1;
+	now Badmouthed Government is true;
+	now Mentioned Keyword is true;
+	increase Suspicion by 1;
+
+phone2b is a page. The cdesc is "The coals are simmering, and the fire will burn bright. Liberation can only be achieved in the night." It is for phone1. It flips to phone3a.
+
+phone2c is a page. The cdesc is "I'm not feeling much about anything anymore..." It is for phone1. It flips to phone3b.
+
+
+	
+
+phone3a is a page.  "'So does that mean you want to come out and join us one last time?'" It flips to phone4.
+
+phone3b is a page. "'All the more reason for you to come out and join us. Come on, one last time?'" It flips to phone4.
+
+phone4 is a page. 
+
+
+phone4a is a page. The cdesc is "One last protest, huh. Yeah I'll be there.". It is for phone4. It flips to phone5a.
+
+phone4b is a page. The cdesc is "Once more unto the breach, my brethren. Count me in once more.". It is for phone4. It flips to phone5a.
+
+phone4c is a page. The cdesc is "I think I'd prefer... to stay inside. It might be dangerous. ". It is for phone4.  It flips to phone5b.
+
+A page-toggle rule for phone4a:
+	increase Surveillance by 1;
+	now Mentioned Keyword is true;
+	
+
+phone5a is a page. "'I hear this one's going to be bigger than ever.'"
+
+phone5b is a page. "'I won't force you to go, but do give me a call if you reconsider.'"
+
+[go to bed changes from "You're not feeling any more tired than the usual." to "You once again succumb to the temptation of a midday nap. You contemplate the sleepless night that will undoubtedly lay ahead. 'Not going to feel any better in a prison cell', you say to yourself. The thought is of little comfort, though." --> THE END]
+[using phone will give option to call her again --> "You coming?" --> > Yeah, I am; > No, never mind. I shouldn't have called back. I don't know what I was thinking. Sorry.]
+
+
+phone6a is a page. The cdesc is "Are we meeting at the usual place?". It is for phone5a. It flips to phone7a.
+
+phone6b is a page. The cdesc is "Meet near the alley close to Parliament like always?". It is for phone5a. It flips to phone7a.
+
+A page-toggle rule for phone6b:
+	increase Surveillance by 1;
+	now Mentioned Keyword is true;
+
+phone6c is a page. The cdesc is "Actually, I changed my mind. I do want to go after all." It is for phone5b. It flips to phone7b.
+
+phone6d is a page. The cdesc is "Thanks, I will if I do. Bye." It is for phone5b. It flips to phonebed.
+
+phone5c is a page. "Your friend answers promptly. 'Are you still coming?'"
+
+phone6e is a page. The cdesc is "Yeah, I changed my mind. I do want to go after all." It is for phone5c. It flips to phone7b.
+
+phone6f is a page. The cdesc is "No, never mind. I shouldn't have called back. I don't know what I was thinking. Sorry." It is for phone5c. It flips to phonebed.
+
+
+
+
+phonebed is a page. "With a heavy sigh you close the call before your friend gets another word in edgewise. Both of you would probably be better off without each other. Although it should still be fine to [bold type]call back[roman type] if you end up reconsidering." It is an end-page. [ends the phone call, creates option to call back, opens go to bed ending]
+
+A page-toggle rule for phonebed:
+	now Tired is true;
+	
+Understand "go to bed" as sleeping. Understand "go to sleep" as sleeping.
+	
+Instead of sleeping:
+	if Tired is false:
+		say "You're not feeling any more tired than the usual."	;
+	otherwise:
+		say "You drop down onto your mattress and once again succumb to the temptation of a midday nap. You contemplate the sleepless night that will undoubtedly lay ahead. 'Not going to feel any better in a prison cell', you say to yourself. The thought is of little comfort, though. [paragraph break]";
+		award the "FTS I'm out" achievement;
+		wait for any key;
+		end the story.
+		
+
+Yelling is an action applying to nothing. Understand "yell" and "call out" and "scream" and "talk" as yelling.
+
+Carry out yelling:
+	say "You call out, but nobody comes.";
+
+Calling is an action applying to one thing. Understand "call [something]" as calling.
+
+Carry out calling:
+	say "You call out, but nobody comes.";
+	if Tired is true:
+		say "You could probably call your friend, though.";
+
+Calling else is an action applying to nothing. Understand "dial 911" and "call the police" and "call police" and "call parents" and "call mom" and "call dad" as calling else.
+
+Carry out calling else:
+	say "You would very much rather not, sorry."
+
+
+Calling back is an action applying to nothing. Understand "call back" and "call friend" and "call my friend" and "call friend back" and "call them back" and "call them" as calling back.
+
+Understand "use phone" as calling back;
+	
+Carry out calling back:
+	if Tired is false:
+		say "You'd rather save your breath.";
+	otherwise:
+		say "You brace yourself for the potential embarrasment and call your friend back.";
+		switch to cyoa at phone5c.
+
+
+phone7a is a page. "'Yeah, that's right. I could pick you up at yours and give you a ride, if you want?'". It flips to phone8.
+
+phone7b is a page. "'Ah that's good to hear. I knew you'd come around to it. I could pick you up at yours and give you a ride, if you want?'". It flips to phone8.
+
+phone8 is a page.
+call wa
+phone8a is a page. The cdesc is "That would be kind of you, thanks." It is for phone8. It flips to phone9a. 	
+
+A page-toggle rule for phone8a:
+	increase Surveillance by 1;
+	now Being Driven is true;
+
+phone9a is a page. "'Alright, cool, see you in a little while.'" It flips to phoneEnd.
+
+phone8b is a page. The cdesc is "No, don't worry, I think I can get there by myself." It is for phone8. It flips to phone9b.
+
+phone9b is a page. "Alright, cool, see you there." It flips to phoneEnd.
+
+
+phoneEnd is a page. "You close the call and take a breather. Now you need to prepare yourself. You feel more alert than you've been in months." It is an end-page.
+
+A page-toggle rule for phoneEnd:
+	now Protest knowledge is true;
+	now Tired is false;
+	
+
+Chapter 2 - leaving the apartment
+
+Understand "outdoors" as outside.
+
+Instead of examining outside:
+	if the front door is closed:
+		say "That way lies madness.";
+	otherwise:
+		say "You take a glance into the corridor outside the door. Good, there's nobody there at the moment.";
+
+Understand "leave [text]" as a mistake ("To try to leave the room, you can use the command [bold type]go outside[roman type]")
+
+Before going outside from the Apartment:
+	if the front door is locked:
+		say "You've got to unlock the door first. Although it would be pretty cool if you could just phase through.";
+		rule fails;
+	if Tired is true:
+		say "You're feeling pretty tired. Maybe you should [bold type]nap[roman type] instead? Although trying to [bold type]call back[roman type] might not be such a bad idea, if you're up to it.";
+		rule fails;
+	if Protest Knowledge is false:
+		say "You're not feeling particularly motivated to leave the house this month.";
+		rule fails;
+	otherwise if the player is not wearing the shoes:
+		instead say "You shoe-d not forget to wear your shoes outside.";
+		rule fails;
+	otherwise if the player is not wearing a jacket:
+		instead say "It's going to be cold outside, better wear something on top of that T-shirt.";
+		rule fails;
+	otherwise:
+		say "[if the player carries something][We]['re] carrying [a list of things carried by the player][otherwise][We]['re] empty-handed"; 
+		say "[if the player wears something]. [We]['re] wearing [a list of things worn by the player][end if].";
+		say “Are you sure you are ready to leave for the protest?”;
+		if the player consents:
+			continue the action;
+		otherwise:
+			say "Yeah, better make sure you only take the things you might need, and that you're wearing all you want to wear.";
+			rule fails;
+		
+Left the Apartment is a truth state that varies. Left the Apartment is false.
+Leaving the Apartment is a scene.  Leaving the Apartment begins when Left the Apartment is true. Leaving the Apartment ends when Going Home begins. Leaving the Apartment ends when At Police Station begins.
+
+After going outside from the Apartment:
+	if the player is wearing the trenchcoat:
+		increase Conspicuousness by 1;
+	otherwise if the player is wearing the rainjacket:
+		increase Conspicuousness by 2;
+	if the player is wearing the baseball cap:		[the baseball cap makes you stand out less]
+		decrease Conspicuousness by 1;
+	otherwise if the player is wearing the ski mask:
+		increase Conspicuousness by 2;
+		increase Suspicion by 1;
+	if Face Covered is false:
+		increase Surveillance by 1;
+	if Gait Changed is false:
+		increase Surveillance by 1;
+	if the player is carrying the phone:
+		if the phone is switched on:
+			increase Surveillance by 1;
+	if the player is not carrying the ID card:
+		increase Suspicion by 1;
+	if the player is carrying the medium rock:
+		increase Suspicion by 2;
+[	say "DEVELOPER STATS: Surv: [Surveillance]; Con: [Conspicuousness]; Sus: [Suspicion]";]	[uncomment this to test for endings]
+	now Left the Apartment is true;
+	
+When Leaving the Apartment begins:
+	say "With some trepidation, you step over the doorway and go outside.";
+	[wait for any key;]
+	say "[italic type]From this point on, try pressing any key to continue if you see no option text.[roman type][paragraph break]";
+	wait for any key;
+	if Being Driven is true:
+		say "You meet your friend outside and get in their car. It’s been a while since the last time you were driven anywhere, you don’t have a car so you usually just walk.";
+		wait for any key;
+		say "When has the city installed all of these roadside traffic cameras? Now you know where all the tax money is going.[paragraph break]";
+		wait for any key;
+		say "The car stops at the edge of a large crowd. ‘I’m gonna have to drop you off on site first, there’s a couple people living a bit further away that also are in need of a ride. Hopefully I’ll see you later!’";
+		wait for any key;
+		say "The car speeds off, leaving you alone on the edge of the large crowd gathered around Parliament building. [paragraph break]";
+		wait for any key;
+	otherwise:
+		say "You know the path towards the meeting point, it’s not a very far walk from here.";
+		wait for any key;
+		say "As you approach Parliament building, you notice a large crowd has gathered around it. Your friend is nowhere to be seen. [paragraph break]";
+		wait for any key;
+	if Conspicuousness < 2:
+		say "People don’t spare you a second glance as you make your way through the gathered crowd. ”;
+		if Conspicuousness is 0:
+			say "It almost feels like as if you're not even there.";
+			award the "Stranger" achievement;
+	otherwise if Conspicuousness is 5:
+		say "The crowd parts in front of you as you make your way through the square. Your attire must appear particularly inspiring. All you're missing, you reckon, is a viking helmet.";
+		award the "Center of Attention" achievement;
+	otherwise:
+		say “More than a few heads turn your way as you make your way through the gathered crowd. ";
+	if the player is wearing the trenchcoat:
+		say "You’re not quite sure what you were thinking, putting on a trenchcoat like that. Perhaps you might have blended in during Cold War era Berlin, but this is a late 21st century protest. ";
+	otherwise if the player is wearing the rainjacket:
+		say "There is no stormcloud in sight today, so you look quite out of place, dressed as you are in a yellow rainjacket. You’re glad you haven’t washed it in a while, or it would have been almost as bright as the sun itself, you feel. ";
+	otherwise if the player is wearing the hoodie:
+		say "The dull grey hoodie you’ve kept since your teenage years and not ever grown out of allows you to blend in with most of the people. ";
+	if the player is wearing the ski mask:
+		say "You pass dangerously close to a pair of police officers patrolling the perimeter of the crowd. One takes a look at your balaclava-covered face, nudges his partner, and calls something in on his radio. ";
+	if the player is wearing the surgical mask:
+		say "There are many people around with surgical masks on; it's one of the last unbanned ways to cover your face, probably due to the obvious excuse. ";
+	if the player is wearing the baseball cap:
+		say "Your baseball cap doesn’t quite hide your face from the streetside CCTV cameras, but it does help to obscure the view somewhat.";
+	say "[paragraph break]";
+	wait for any key;
+	say "As more and more people arrive, the protest becomes more heated. People around you start throwing rocks at the shielded riot police. You didn't see any rocks on the ground nearby before, where did they get them from? [paragraph break]";
+	wait for any key;
+	say "You see an armored swat van pulling up. It is most definitely time to leave.[paragraph break]";
+	wait for any key;
+[	if Suspicion is 0:
+		say "You notice more police vans arriving; officers start rounding people up and bringing them away. You keep to the sidelines, trying not to draw attention to yourself as you vacate the area.[paragraph break]";
+		wait for any key;
+		say " You walk the rest of the way home, hearing sirens from afar. You have a feeling that that could have ended really badly.[paragraph break]"; 
+		now Left to Home is true;]
+[	otherwise if Conspicuousness < 2:]
+	if Conspicuousness < 2:
+		say "You notice more police vans arriving; officers start rounding people up and bringing them away. You keep to the sidelines, trying not to draw attention to yourself as you vacate the area.[paragraph break]";
+		wait for any key;
+		say "You walk the rest of the way home, hearing sirens from afar. You have a feeling that that could have ended really badly.[paragraph break]"; 
+		now Left to Home is true;
+	otherwise:
+		switch to cyoa at protest1;
+	
+protest1 is a page.  “You suddenly feel a rough hand grabbing your shoulder from behind. ‘Buddy, you need to come with us.’";
+
+protest_go1 is a page. The cdesc is "Don't resist; do as you're told". It is for protest1. It flips to protest_go2.
+
+protest_go2 is a page. "You allow yourself to be handcuffed and guided to a police van. The officers round up as many people as they can fit into it and drive you away to the police station.". [It is an end-page.]
+
+A page-toggle rule for protest_go2:
+	now Arrested is true;
+	
+protest_run1 is a page. The cdesc is "Make a run for it". It is for protest1. It flips to protest_run2.
+
+protest_run2 is a page. "You violently twist yourself out of the man’s hold and start running before he’s able to recover. ”. It flips to protest_run3.
+
+A page-toggle rule for protest_run2:
+	increase Suspicion by 1;
+	increase Resisted Arrest by 1;
+	increase Surveillance by 1;
+	
+A page-switch rule for protest_run3:
+	if Conspicuousness is 2:
+		now the current page is protest_run_success;
+	otherwise: 	[con > 2, as con < 2 does not have this event]
+		now the current page is protest_run_fail;
+
+protest_run_success is a page. "You lunge into a close-together group of loud protesters, and come out on the other side. When the police officers get through them, you’ve already blended in with the crowd. [paragraph break]You walk the rest of the way home, constantly on edge, jumping whenever you hear a siren. And you hear a lot of those.". It flips to protest_run_success2.
+
+protest_run_success2 is a page.
+A page-toggle rule for protest_run_success2:
+	award the "Urban Evasion" achievement;
+	now Left to Home is true;
+
+
+protest_run_fail is a page. "You try to jump into the crowd and blend in, but you are much too noticeable. An officer tackles you to the ground, tazes you and puts you in handcuffs. [line break]You’re roughly pushed inside a police van, which eventually drives away to the station.".
+
+A page-toggle rule for protest_run_fail:
+	now Arrested is true;
+		
+Chapter 3 - going back home
+
+Left to Home is a truth state that varies. Left to Home is initially false.
+Going Home is a recurring scene. Going Home begins when Left to Home is true. Going Home ends when At Police Station begins.
+
+Next to your Apartment is a room.
+
+When Going Home begins:
+	wait for any key;
+	now player is in Next to your Apartment;
+	if Arrested is true:
+		now Not Going To Be Searched is true;
+	otherwise if Surveillance < 4:
+		now Not Going To Be Searched is true;
+	otherwise if Suspicion is 0:
+		now Not Going To Be Searched is true;
+	otherwise:
+		say "Finally, you reach and enter your building. You climb the stairs and walk up to the front door of your apartment, only to find it ajar. Before your brain takes the time to process it fully and walk away, the door opens completely.[paragraph break]";
+		wait for any key;
+		if Resisted Arrest is 0:
+			say "A bored-looking three-letter-jacketed detective walks out and hands you a search warrant. 'That’s a copy, so don’t get any ideas.'";
+			say "[paragraph break]'You're going to have to come with me to the station,' he adds as an afterthought.";
+			switch to cyoa at search_peaceful1;
+		otherwise: [just escaped from arrest]
+			say "A tense-looking three-letter jacketed detective walks out the room. Upon seeing you, his eyes go wide and he draws his gun. You have no choice but to surrender, and accept getting your hands cuffed behind your back. 'Turns out, we got a search warrant for your place in record time. Guess we’ve been keeping an eye on you in a while. In the meantime, you’re going to get hauled in to the station.'”;
+			switch to cyoa at search_violent;
+
+To decide if phone was tracked:
+	if the player is not carrying the phone, decide no;
+	if the phone is switched off, decide no;
+	decide yes.
+
+To say warrant text:
+	say "The warrant authorizes 'in-person search and surveillance and any additional proactive remedying steps', based on a number of supporting evidence. [line break]You see mentions of [if Mentioned Keyword is true]keywords in phone records, [end if][if Being Driven is true]license plate tracking, [end if][if phone was tracked]references to specific cell phone towers, [end if][if Face Covered is false]automatic face detection from storefront security cameras, [end if][if Gait Changed is false]and even a positive identification given the particular way you walk?! You'd bet that this is only the smallest amount that they are willing to publicly admit to get you prosecuted.[otherwise]and you'd bet those are only what they are willing to admit in this report. Probably the smallest amount needed to get you prosecuted."
+
+			
+search_peaceful is a page.
+
+read_warrant_peaceful is a page. The cdesc is "Read what the warrant says.". It is for search_peaceful1. It flips to search_peaceful.
+
+A page-toggle rule for read_warrant_peaceful:
+	say "[warrant text]";
+	now the cdesc of read_warrant_violent is "Demand to see what the warrant says again.";
+	
+follow_to_station_peaceful is a page. The cdesc is "Follow him to the station.". It is for search_peaceful.  
+
+A page-toggle rule for follow_to_station_peaceful:
+	say "The detective lets the officers searching your apartment know he’s leaving, and takes you to his unmarked vehicle. You’re driven to the police station.";
+	now Left to Home is false;
+	now Arrested is true;
+
+search_detained is a page. The cdesc is "Ask 'Am I being detained?'". It is for search_peaceful. It is cancelled by search_detained. It flips to search_peaceful.
+
+A page-toggle rule for search_detained:
+	say "The detective takes a deep sigh, ‘You could be, if you insist on it. Or you could just come with me peacefully.’";
+	
+resist_arrest is a page. The cdesc is "Make a run for it.". It is for search_peaceful. It flips to search_violent.
+
+A page-toggle rule for resist_arrest:
+	increase Suspicion by 1;
+	increase Resisted Arrest by 1;
+	say "You try to make a mad dash for the stairwell, but the detective is well trained. Immediately alert, he draws his gun and orders you to stay put. [line break]You have no choice but to surrender, and accept getting your hands cuffed behind your back.";
+
+
+
+search_violent is a page.
+
+read_warrant_violent is a page. The cdesc is "Demand to see what the warrant says." It is for search_violent. It is cancelled by read_warrant_violent. It flips to search_violent.
+
+A page-toggle rule for read_warrant_violent:
+	say "'That’s within your rights, sure. But don’t try anything funny.’ He holds the paper out for you to see.";
+	say "[warrant text]";
+	
+follow_to_station_violent is a page. the cdesc is "Let yourself be taken to the station." It is for search_violent.
+
+A page-toggle rule for follow_to_station_violent:
+	say "The detective lets the officers searching your apartment know he’s leaving, and drags you to his unmarked vehicle. You’re driven to the police station.";
+	now Left to Home is false;
+	now Arrested is true;
+
+Not Going To Be Searched is a truth state that varies. Not Going To Be Searched is initially false.
+No Search is a scene. No Search begins when Not Going To Be Searched is true.
+When No Search begins:
+	say "Finally, you reach and enter your building. You climb the stairs and walk up to the front door of your apartment.";
+	wait for any key;
+	if the player is carrying the key:
+		say "You unlock the door and step inside.[paragraph break]";
+	otherwise:	[not carrying key]
+		say "You realize with a start you left the key inside the room. However, that also means you couldn’t have locked the door as you left, so you just open it and step inside.[paragraph break]";
+	wait for any key;
+	say "[bold type]Apartment[roman type][line break]";
+	now the left hand status line is "Apartment";
+	if Surveillance > 2:
+		say "Your pile of [if plates are clean]clean[otherwise]dirty[end if] plates is still towering on the sink. It could be that the strewn-around clothes and bedsheets look more ominous in the dark, but the room appears slightly messier than you left it. It’s good that you dispensed with the need to make your bed before lying on it.[paragraph break]";
+	otherwise:
+		say "Your room looks ominous in the dark, but is otherwise just as messy as you left it.  Your pile of [if plates are clean]clean[otherwise]dirty[end if] plates is still towering on the sink. Tired from all the effort of the day, you allow yourself to drop down on your bed.[paragraph break]";
+	wait for any key;
+	if the phone is switched off:
+		say "You switch on your phone to check the time, and almost immediately it rings.";
+	otherwise: [phone is switched on]
+		say "Your switched-on phone startles you as it starts ringing.";
+	wait for any key;
+	say "It’s your friend calling. ‘All good?’ [line break]You manage to mumble an affirmative reply. [paragraph break]";
+	wait for any key;
+	say "‘So… same time, new place next week?'";
+	wait for any key;
+	if Surveillance is 0:
+		award the "Non-Person" achievement;
+	if Arrested is true:
+		say "[paragraph break]Somewhere, someplace far away, an algorithm refers the tracking of your call to a live agent. You are now a person of interest, after all. [paragraph break]";
+		wait for any key;
+		if Surveillance is 10:
+			say "[line break]The alert, however, was not actually necessary, as you are already under watch by a rotating team. It's fortunate that your life is not excessively entertaining. [paragraph break]";
+			award the "Human Show" achievement;		
+			wait for any key;
+		end the story;
+	otherwise if Surveillance < 2: 
+		say "[paragraph break]";
+		end the story;
+	otherwise:
+		say "[paragraph break]Somewhere, someplace far away, an algorithm referred the tracking of your call to a live agent. You are now a person of interest, after all. [paragraph break]";
+		wait for any key;
+		end the story.
+	
+After printing the player's obituary:
+	say "[line break]Final game statistics: ";
+	say "[line break] Surveillance level: [Surveillance]/10";
+	say "[line break] Conspicuousness at protest: [Conspicuousness]/5";
+	say "[line break] Police suspicion: [Suspicion]/6";
+		
+
+Chapter 4 - getting arrested
+
+Arrested is a truth state that varies. Arrested is initially false.
+At Police Station is a scene. At Police Station begins when Arrested is true.
+
+The Police Station is a room.
+
+Other Crimes is a truth state that varies. Other Crimes is initially false.
+
+When At Police Station begins:
+	wait for any key;
+	cyoa teleport to The Police Station;
+	[now player is in The Police Station;]
+	[switch from cyoa, without looking;]
+	switch from cyoa;
+	say "Upon arriving, you don’t have much time to gawk at the frenzy of activity in the station. More and more people are brought in by the minute. You see civilians being searched, and others sitting around, stuck in jail cells.[line break]";
+	wait for any key;
+	say "By some quirk of bureaucracy, you are instead taken straight to an interrogation room. You wonder whether that means that you look too dangerous, or not dangerous enough.[paragraph break]";
+	wait for any key;
+	say "The room is tiny, barebones, with a little wooden table and two seats. You are seated away from the door, back towards the wall[if Resisted Arrest > 0], and cuffed to the table[end if].[line break]";
+	wait for any key;
+	say "A heavyset police officer soon walks in, and takes the other seat. He looks at you intently. ‘You’ve been conclusively placed to have been in the site of the riot.’[paragraph break]";
+	wait for any key;
+	if Suspicion > 1:
+		say "He takes a moment to gather his thoughts, and continues: ";
+	otherwise if Suspicion is 0:
+		say "He takes a moment to gather himself and his demeanor suddenly changes. 'But we've taken a look at your identification and belongings, and everything checks out. Looks like you were just in the wrong place at the wrong time. ";
+	if Being Driven is true:
+		say "'We’ve got you on camera in the same car with a known recidivist, driving towards the site of unrest. ";
+		now Other Crimes is true;
+	if Badmouthed Government is true:
+		if Other Crimes is false:
+			say "'";
+		say "We’ve [if Being Driven is true]also [end if]got you on record with some pretty inflammatory speech against our government. That could be interpreted as fomenting unrest, especially given what happened today. And my job is to secure law and order, no matter what. ";
+		now Other Crimes is true;
+	if the player is not carrying the ID card:
+		if Other Crimes is true:
+			say "'[paragraph break]";
+			wait for any key;
+		say "'You do not currently have any lawful identification with you. Unlucky for you, your parents were law-abiding citizens, so we have your DNA and fingerprints on file. You don’t get to be a J. Doe these days. We know exactly who you are. ";
+		now Other Crimes is true;
+	if the player is carrying the medium rock:
+		if Other Crimes is true:
+			say "'[paragraph break]";
+			wait for any key;
+		say "'People got hurt during the riot, you know. Many good law enforcement officers would be bleeding out in the hospital right now if they didn’t have standard issue armor to block the stones. Did you not have the time to throw yours, or did you just not find the right target? ...A real shame.’ He does not look particularly compassionate towards you. ‘At least people like you serve to justify our budget. ";
+	if Resisted Arrest > 0:
+		if Other Crimes is true:
+			say "'[paragraph break]";
+			wait for any key;
+		say  "‘[if Suspicion is 1]We know you’re guilty of something. [otherwise]And the biggest indicator of your guilt? [end if]You resisted arrest. Innocent people don’t run. ";
+	say "'[paragraph break]";
+	wait for any key;
+	if Suspicion is 6:
+		say "The officer lets out a brief chuckle: 'I'll be honest, this is an open and shut case. There is no getting out of this one, I'm afraid.'";
+		award the "Wretched Recidivist" achievement;
+		say "[paragraph break]";
+		wait for any key;
+		say "You don't get a free phone call from your prison cell. [paragraph break]";
+		wait for any key;
+		end the story;
+	otherwise if Suspicion  > 3:
+		say "‘I’ll be frank, individually, none of these would warrant any charges in and of itself. But combined together, these paint a picture that does not look very good on you. Better hope the judge is feeling lenient.’[paragraph break]";
+		wait for any key;
+		say "You spend your one free phone call attempting to call your friend. They never answer the phone. [paragraph break]";
+		wait for any key;
+		end the story;
+	otherwise if Suspicion is 0:
+		say "He smiles at you apologetically, 'Such things happen, citizen. I'm sure you understand. Try to be more careful from now on.'[paragraph break]";
+		wait for any key;
+		say "You are promptly allowed to leave after signing some paperwork.  You start slowly walking the way back home.";
+		award the "Squeaky Clean" achievement;
+		now Left to Home is true;
+	otherwise: [if Suspicion < 4 but not 0]
+		say "‘However, from what we found we would not be able to make any charges against you stick for the time being. Circumstantial evidence and all that. But make no mistake; we will be watching you very closely. I suggest you start behaving yourself from now on.’ [paragraph break]";
+		increase Surveillance by 2;
+		wait for any key;
+		say "You are released without further explanation. You start slowly walking the way back home.";
+		now Left to Home is true;
+
+
+Part 4 - Achievements
+
+Table of Achievements
+achievement	description	validation	awarded
+"Stranger"	"Draw no attention to yourself"	--	false
+"Center of Attention"	"Present yourself as Conspicuously as possible"	--	false
+"They're not gonna stop calling, you know"	"Let the phone ring for a while"	phone achievement rule	false
+"Squeaky Clean"	"Get wrongfully arrested"	--	false
+"Wretched Recidivist"	"Wow, you really went all out to trigger them, didn't you"	--	false
+"Non-Person"	"You basically don't exist as far as the State is concerned"	--	false
+"Human Show"	"Your life is now literally 'Reality TV'"	--	false
+"FTS I'm out"	"NO thank you"	--	false
+"Vent your frustrations"	"I suspect you looked at the code to get this one"	--	false
+"Man's Not Hot"	"One plus one plus one is three"	three jackets achievement rule	false
+"Urban Evasion"	"Your decisive strike and immersive blending got you off the hook"	--	false
+"Productive member of society"	"You made life much easier for your imaginary roommate"	--	false
+"Try and nip it in the bud"	"You tried to use future knowledge to cause a paradox, but got foiled by authorial fiat."	--	false
+
+This is the phone achievement rule:
+	if Phone Conversation has not happened:
+		if Ring Count is 4:
+			rule succeeds;
+
+Jackets Count is a number that varies. Jackets Count is initially 0.
+
+This is the three jackets achievement rule:
+	now Jackets Count is 0;
+	repeat with current equipment running through all equipment worn by the player:
+		if the object kind of the current equipment is the object kind of the hoodie:
+			increase Jackets Count by 1;
+	repeat with current item running through all equipment carried by the player:
+		if the object kind of the current item is the object kind of the hoodie:
+			increase Jackets Count by 1;
+	if Jackets Count is 3:
+		rule succeeds;
+
+Use persistent achievements. 	[comment this out if you don't want it to create a save file for the achievements]
+
+Resetting achievements is an action out of world.
+
+Understand "reset achievements" as resetting achievements.	[this command will replace the achievement file with empty text]
+
+Carry out resetting achievements:
+	write " " to the file of Persistent Achievements;
+	say "Done. Achievements will be reset upon restart.";
+
+
+Part 5 - Testing descriptions - Not for release
+
+include Object Response Tests by Juhana Leinonen
+
+The description of All-windows is "<none>".
+The description of All-buffer-windows is "<none>".
+The description of All-grid-windows is "<none>".
+The description of main window is "<none>".
+The description of status window is "<none>".
+The description of quote window is "<none>".
+The description of sidebar is "<none>".
+The description of choice window is "<none>".
+
+When play begins (this is the run property checks at the start of play rule): 
+	repeat with item running through things: 
+		if description of the item is "": 
+			say "[item] has no description." 

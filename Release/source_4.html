@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Peter Mahhov - Nothing to Fear — 6 of 9</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="author" content="Peter Mahhov" />
+  <meta name="description" content="A page for the game Nothing to Fear by Peter Mahhov." />
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+ </head>
+
+<body>
+
+<div class = "container">
+
+<div class ="sourcecoverimage">
+	<span><a href="Cover.jpg"><img src="Small Cover.jpg" border="1"></a></span>
+</div>
+
+<div class ="sourceintroduction">
+	<h1>
+		<span>Nothing to Fear</span> <span class="pagination">— 6 of 9</span>
+	</h1>
+	<h2>
+		<span>Peter Mahhov</span>
+	</h2>
+	<div class ="sourcebibliography">
+		<span>Release 1</span>
+	</div>
+</div>
+
+<div class = "links">
+<ul>
+<li><a href="index.html">Home page</a></li><li><a href="source.html">Beginning</a></li><li><a href="source_3.html">Previous</a></li><li><a href="source_5.html">Next</a></li>
+</ul>
+</div>
+
+<div class = "source">
+<p class="indent0"><span class="heading">Part 2 - Variable tracking</span></p><p class="indent0">Surveillance is a number that varies. <span class="comment">[how much information does the government have on the player? currently or in the future if things don't change]</span></p><p class="indent0">The Surveillance is initially 0. <span class="comment">[max surv is currently 10]</span></p><p class="indent0"><span class="comment">[specific tracked actions during phone conversation]</span></p><p class="indent0">Badmouthed Government is a truth state that varies. Badmouthed Government is initially false.</p><p class="indent0">Mentioned Keyword is a truth state that varies. Mentioned Keyword is initially false.</p><p class="indent0">Being Driven is a truth state that varies. Being Driven is initially false. <span class="comment">[does the player accept the ride with their friend?]</span></p><p class="indent0">Face Covered is a truth state that varies. Face Covered is initially false.</p><p class="indent0">Gait Changed is a truth state that varies. Gait Changed is initially false.</p><p class="indent0">Every turn:</p><p class="indent1">if small rocks are in shoes:</p><p class="indent2">now Gait Changed is true;</p><p class="indent1">otherwise:</p><p class="indent2">now Gait Changed is false;</p><p class="indent1">if the player is wearing a facemask:</p><p class="indent2">now Face Covered is true;</p><p class="indent1">otherwise:</p><p class="indent2">now Face Covered is false;</p><p class="indent0">Conspicuousness is a number that varies. <span class="comment">[ how noticeable is the player? ]</span></p><p class="indent0">The Conspicuousness is initially 1. <span class="comment">[max is currently 5]</span></p><p class="indent0">Suspicion is a number that varies. <span class="comment">[ how likely it is that the player is going to be charged after arrest? ]</span></p><p class="indent0">The Suspicion is initially 0. <span class="comment">[max sus is currently 6]</span></p><p class="indent0">Resisted Arrest is a number that varies.  <span class="comment">[how many times has the player resisted arrest?]</span></p><p class="indent0">Resisted Arrest is initially 0. <span class="comment">[value currently ranges from 0 to 1]</span></p><p class="indent0">Protest knowledge is a truth state that varies. <span class="comment">[ does the player know that a protest is going to happen? ]</span></p><p class="indent0">Tired is a truth state that varies. <span class="comment">[can the player end the game by going to bed?]</span></p><p class="indent0">When play begins:</p><p class="indent1">now Protest knowledge is false;</p><p class="indent1">now Tired is false;</p>
+</div>
+
+<div class ="notes">
+
+</div>
+
+</div>
+
+</body>
+
+</html>
