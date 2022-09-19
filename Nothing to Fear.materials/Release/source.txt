@@ -1,6 +1,6 @@
 "Nothing to Fear" by Peter Mahhov
 
-[this is version 1.3.3 of the game]
+[this is version 1.4.0 of the game]
 
 include Basic Screen Effects by Emily Short.
 
@@ -725,7 +725,6 @@ protest_run2 is a page. "You violently twist yourself out of the man’s hold an
 A page-toggle rule for protest_run2:
 	increase Suspicion by 1;
 	increase Resisted Arrest by 1;
-	increase Surveillance by 1;
 	
 A page-switch rule for protest_run3:
 	if Conspicuousness is 2:
@@ -852,6 +851,8 @@ When No Search begins:
 	wait for any key;
 	say "‘So… same time, new place next week?'";
 	wait for any key;
+	if Resisted arrest > 0:
+		increase Surveillance by 1;
 	if Surveillance is 0:
 		award the "Non-Person" achievement;
 	if Arrested is true:
